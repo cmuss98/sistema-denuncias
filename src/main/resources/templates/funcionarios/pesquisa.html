@@ -1,0 +1,51 @@
+`<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	<head>
+		<title>ViajaNet - Funcionarios</title>
+	</head>
+	<body>
+		<section layout:fragment="conteudo">
+			<div class="container">
+				<div class="row mt-4">
+					<div class="col-sm-12 col-md-9">
+						<h4>Pesquisa de funcionarios</h4>
+					</div>
+					<div class="col-sm-12 col-md-3" style="text-align:right;">
+						<a th:href="@{/funcionarios/novo}" type="button" class="btn btn-success">Cadastrar <i class="fa fa-user-plus"></i></a>
+					</div>
+				</div>
+				<form th:action="@{/funcionarios/pesquisarCa}" method="get">
+					<label>Pesquisar pelo user</label>
+					<input type="text" name="nomePesquisa">
+					<input type="submit" value="pesquisar">
+				</form>
+				<hr>
+				<table class="table table-stripped table-bordered">
+					<tr>
+						<th class="col-1">Codigo</th>
+						<th class="col-4">User Name</th>
+						<th class="col-4">Senha</th>
+						<th class="col-2">Perfil</th>
+						<th class="col-4 text-center"><i class="fa fa-cogs"></i></th>
+					</tr>
+					<tr th:each="cliente: ${usuarios}">
+						<td th:text="${cliente.codigo}"></td>
+						<td th:text="${cliente.user}"></td>
+						<td th:text="${cliente.senha}"></td>
+						<td th:text="${cliente.perfil?.perfil}"></td>
+						<td class="text-center">
+							<a th:href="@{/funcionarios/{codigo}(codigo = ${cliente.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-user-edit"></i></a> 
+							<a th:href="@{/funcionarios/remover/{codigo}(codigo = ${cliente.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
+						</td> 
+					</tr>
+					<tr th:if="${#lists.isEmpty(usuarios)}">
+						<td colspan="6" class="text-center">Nenhum cadastro de funcionario encontrado</td>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</body>
+</html>

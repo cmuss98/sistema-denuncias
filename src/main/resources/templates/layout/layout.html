@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8">
+		<title>ViajaNet</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/all.min.css}">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+	</head>
+	<body>
+		<div th:replace="layout/fragments/navbar.html :: navbar"></div>
+		
+		<div class="content" layout:fragment="conteudo"></div>
+		
+		<div th:replace="layout/fragments/footer.html :: footer"></div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/popper.js}"></script>
+		<script th:src="@{/js/dncode.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</body>
+</html>

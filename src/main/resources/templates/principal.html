@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	<head>
+		<title>ViajaNet - Companhia Aerea</title>
+	</head>
+	<script type="text/javascript">
+            var visibleSlides=[0,1,2];
+            !showDivs();
+
+            function activate(){
+                showDivs();
+            }
+
+
+            function showDivs(){
+                
+                var first=visibleSlides[0];
+                var sec=visibleSlides[1];
+                var third=visibleSlides[2];
+                
+                var x=document.getElementsByClassName("column");
+                
+
+                if(first==3 && sec==4 && third==5){
+                    first=0;sec=1;third=2;
+                    
+                    visibleSlides=[0,1,2];
+
+
+                    x[first].style.display="block";
+                    x[sec].style.display="block";
+                    x[third].style.display="block";
+                    
+                    x[5].style.display="none";
+                    x[4].style.display="none";
+                    x[3].style.display="none";
+                    
+                }else{
+                    first=3;sec=4;third=5;
+
+                    visibleSlides=[3,4,5];
+
+                    x[first].style.display="block";
+                    x[sec].style.display="block";
+                    x[third].style.display="block";
+
+                    x[0].style.display="none";
+                    x[1].style.display="none";
+                    x[2].style.display="none";
+                }
+                
+            }
+        </script>
+        <body onload="activate()">
+
+
+            <h1 align="center">
+                ViajaNET<br>
+            </h1>
+          
+            <div class="cards">
+                <div class="row">
+                    <section id="lam" class="column">
+                            <div class="alignCenter">
+                                <a href="#"><img  src="img\south.png"></a>   
+                            </div>
+                            
+                    </section>
+                 
+                    
+                    <section id="qatar" class="column">
+                            <div class="alignCenter">
+                                <a href="#"><img src="img\Qatar.png"></a>
+                            </div>
+                            
+                    </section>
+                   
+                   
+                    <section id="emirates" class="column">
+                            <div class="alignCenter">
+                                <a  href="#">
+                                    <img  src="img\Emirates.png">
+                                </a>
+                            </div>
+                            
+                            
+                    </section>
+                    <!--
+                        PART II
+
+                    -->
+
+                    <section id="airZealand" class="column">
+                            <div class="alignCenter">
+                                <a href="#"><img src="img\AirZeaLand.png"></a>   
+                            </div>
+                            
+                    </section>
+                 
+                    
+                    <section id="austrian" class="column">
+                            <div class="alignCenter">
+                                <a href="#"><img  src="img\Austrian.png"></a>
+                            </div>
+                            
+                    </section>
+                   
+                   
+                    <section id="qantas" class="column">
+                            <div class="alignCenter">
+                                <a  href="#">
+                                    <img  src="img\Qantas.png">
+                                </a>
+                            </div>
+                            
+                    </section>
+                </div>
+                
+            </div>
+            <br>
+
+            <div class="centerButton" >
+                    <button class="goodButton" onclick="activate()">
+                        <p class="ok" align="center">SEE MORE</p>
+                    </button>
+            </div>
+     
+</html>

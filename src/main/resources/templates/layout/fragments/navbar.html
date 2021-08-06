@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+			<div class="container">
+				<a th:href="@{/}" class="navbar-brand">ViajaNet</a>
+				<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="nav">
+					<ul class="navbar-nav mx-auto">
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/index}">Home</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle"role="button" data-bs-toggle="dropdown" th:href="@{#}">Usuario</a>
+							<ul class="dropdown-menu">
+								<li ><a class="dropdown-item" th:href="@{/funcionarios/novo}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/funcionarios}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Cliente</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" th:href="@{/bilhetes/novo}">Reservar</a></li>
+								<li><a class="dropdown-item" th:href="@{/clientes}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Bilhete</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" th:href="@{/bilhetes/novo}">Reservar</a></li>
+								<li><a class="dropdown-item" th:href="@{/clientes}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle"role="button" data-bs-toggle="dropdown" th:href="@{#}">Voo</a>
+							<ul class="dropdown-menu">
+								<li ><a class="dropdown-item" th:href="@{/voos/novo}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/voos}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle"role="button" data-bs-toggle="dropdown" th:href="@{#}">Aeronave</a>
+							<ul class="dropdown-menu">
+								<li ><a class="dropdown-item" th:href="@{/aeronaves/novo}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/aeronaves}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle"role="button" data-bs-toggle="dropdown" th:href="@{#}">Companhia Aerea</a>
+							<ul class="dropdown-menu">
+								<li ><a class="dropdown-item" th:href="@{/companhiaAereas/novo}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/companhiaAereas}">Pesquisar</a>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+</html>

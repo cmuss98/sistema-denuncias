@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}"
+	>
+	<head>
+		<title>Cadastro de funcionarios</title>
+	</head>
+	<body>
+		<section layout:fragment="conteudo">
+			<div class="container mt-4">
+				<div th:replace="fragments/mensagemSucesso.html :: alert"></div>
+				<div class="row">
+					<div class="col-12 col-sm-9">
+						<h4>Cadastro de funcionarios</h4>
+					</div>
+					<div class="col-12 col-sm-3" style="text-align: right;">
+						<a type="button" class="btn btn-success" th:href="@{/funcionarios}">Pesquisar <i class="far fa-eye"></i></a>
+					</div>
+				</div>
+				<hr>
+				<div class="card">
+					<div class="card-body">
+						<form th:object="${usuario}" method="post" th:action="@{/funcionarios/novo}">
+							<input type="hidden" th:field="*{codigo}"/>
+							<div class="row">
+								<div class="col-sm-12 col-md-5">
+									<label for="user" class="form-label">User Name</label>
+									<input type="text" class="form-control" id="user" th:field="*{user}">
+								</div>
+								<div class="col-sm-12 col-md-5">
+									<label for="senha" class="form-label">Senha</label>
+									<input type="text" class="form-control" id="senha" th:field="*{senha}"/>
+								</div>
+								<div class="col-md-3 mt-3"><div class="row mt-3">
+									<label for="perfil" class="form-label">Perfil</label>
+									<select class="form-control" id="perfil" th:field="${usuario.perfil}">
+										<option value="">Selecione o perfil</option>
+										<option th:each="ca: ${perfis}"
+										th:value="${ca.codigo}"
+										th:text="${ca.perfil}">
+										</option>
+									</select>
+								</div>
+								
+								<button type="submit" class="btn btn-primary mt-4">Cadastar <i class="fa fa-user-plus"></i></button>
+						</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

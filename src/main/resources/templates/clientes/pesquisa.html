@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	<head>
+		<title>ViajaNet - Clientes</title>
+	</head>
+	<body>
+		<section layout:fragment="conteudo">
+			<div class="container">
+				<div class="row mt-4">
+					<div class="col-sm-12 col-md-9">
+						<h4>Pesquisa de clientes</h4>
+					</div>
+					<div class="col-sm-12 col-md-3" style="text-align:right;">
+						<a th:href="@{/bilhetes/novo}" type="button" class="btn btn-success">Cadastrar <i class="fa fa-user-plus"></i></a>
+					</div>
+				</div>
+				<form th:action="@{/clientes/pesquisarCa}" method="get">
+					<label>Pesquisar pelo nome</label>
+					<input type="text" name="nomePesquisa">
+					<input type="submit" value="pesquisar">
+				</form>
+				<hr>
+				<table class="table table-stripped table-bordered">
+					<tr>
+						<th class="col-1">Codigo</th>
+						<th class="col-3">Nome</th>
+						<th class="col-1">Nacionalidade</th>
+						<th class="col-1">Documento</th>
+						<th class="col-1">Telefone</th>
+						<th class="col-1">E-mail</th>
+						<th class="col-2">Data do voo</th>
+						<th class="col-2">Origem-Destino</th>
+						<th class="col-1">Hora de Partida</th>
+						<th class="col-1">Hora de Chegada</th>
+						<th class="col-1">Preco</th>
+						<th class="col-1 text-center"><i class="fa fa-cogs"></i></th>
+					</tr>
+					<tr th:each="cliente: ${clientes}">
+						<td th:text="${cliente.codigo}"></td>
+						<td th:text="${cliente.nome}"></td>
+						<td th:text="${cliente.nacionalidade?.pais}"></td>
+						<td th:text="${cliente.numeroDocumento}"></td>
+						<td th:text="${cliente.telefone}"></td>	
+						<td th:text="${cliente.email}"></td>
+						<td th:text="${cliente.voo?.data}"></td>
+						<td>
+							<Span th:each="provincia: ${cliente.voo?.provincia}">
+								<Span th:text="${provincia.nome}"></Span>
+							</Span>
+						</td>
+						<td th:text="${cliente.voo?.horaPartida}"></td>
+						<td th:text="${cliente.voo?.horaChegada}"></td>
+						<td th:text="${cliente.voo?.preco}"></td>
+						<td class="text-center">
+							<a th:href="@{/clientes/{codigo}(codigo = ${cliente.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-user-edit"></i></a> 
+							<a th:href="@{/clientes/remover/{codigo}(codigo = ${cliente.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
+						</td> 
+					</tr>
+					<tr th:if="${#lists.isEmpty(clientes)}">
+						<td colspan="11" class="text-center">Nenhum cadastro de cliente encontrado</td>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}"
+	>
+	<head>
+		<title>Cadastro de clientes</title>
+	</head>
+	<body>
+		<section layout:fragment="conteudo">
+			<div class="container mt-4">
+				<div th:replace="fragments/mensagemSucesso.html :: alert"></div>
+				<div class="row">
+					<div class="col-12 col-sm-9">
+						<h4>Registro da Reserva</h4>
+					</div>
+					<div class="col-12 col-sm-3" style="text-align: right;">
+						<a type="button" class="btn btn-success" th:href="@{/clientes}">Pesquisar <i class="far fa-eye"></i></a>
+					</div>
+				</div>
+				<hr>
+				<div class="card">
+					<div class="card-body">
+						<form th:object="${cliente}" method="post" th:action="@{/clientes/novo}">
+						<div class="col-sm-12 col-md-4">
+									<label for="voo" class="form-label">Voo escolhido</label>
+									<select class="form-control" id="voo" th:field="${cliente.voo}">
+										<option value="${voos}">Selecione o voo</option>
+										<option th:each="ca: ${voos}"
+										th:value="${ca.codigo}"
+										th:text="${ca.data}+'-'+${ca.horaPartida}+'-'+${ca.horaChegada}+'-'+${ca.preco}">
+										</option>
+									</select>
+								</div>
+							<input type="hidden" th:field="*{codigo}"/>
+							<input type="hidden"  th:field="*{dataReserva}">
+							<div class="row">
+								<div class="col-sm-12 col-md-8">
+									<label for="nome" class="form-label">Nome</label>
+									<input type="text" class="form-control" id="nome" th:field="*{nome}">
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="nacionalidade" class="form-label">Pais de Origem</label>
+									<select class="form-control" id="nacionalidade" th:field="${cliente.nacionalidade}">
+										<option value="">Selecione o Pais</option>
+										<option th:each="ca: ${nacionalidades}"
+										th:value="${ca.codigo}"
+										th:text="${ca.pais}">
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-12 col-md-4">
+									<label for="genero" class="form-label">Genero</label>
+									<select class="form-control" id="genero" th:field="*{genero}">
+										<option value="">Selecione o genero</option>
+										<option value="M">Masculino</option>
+										<option value="F">Femenino</option>
+									</select>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="dataNascimento" class="form-label">Data de nascimento</label>
+									<input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"/>		
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="rua" class="form-label">Tipo de documento</label>
+									<select class="form-control" id="tipoDocumento" th:field="*{tipoDocumento}">
+										<option value="">Selecione o tipo de documento</option>
+										<option value="BI">Bilhete de identidade</option>
+										<option value="passaporte">Passaporte</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-12 col-md-4">
+									<label for="numero" class="form-label">Numero do documento</label>
+									<input type=text class="form-control" id="numero" th:field="*{numeroDocumento}"/>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="telefone" class="form-label">Telefone</label>
+									<input type="text" class="form-control" id="telefone" th:field="*{telefone}"/>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="email" class="form-label">E-mail</label>
+									<input type="text" class="form-control" id="email" th:field="*{email}">
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary mt-4">Cadastar <i class="fa fa-user-plus"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
