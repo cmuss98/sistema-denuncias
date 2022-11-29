@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}"
+	>
+	<head>
+		<title>Cadastro de Veiculos</title>
+	</head>
+	<body>
+		<section layout:fragment="conteudo">
+			<div class="container mt-4">
+				<div th:replace="fragments/mensagemSucesso.html :: alert"></div>
+				<div class="row">
+					<div class="col-12 col-sm-9">
+						<h4>Registro do Veiculo</h4>
+					</div>
+					<div class="col-12 col-sm-3" style="text-align: right;">
+						<a type="button" class="btn btn-success" th:href="@{/veiculos}">Pesquisar <i class="far fa-eye"></i></a>
+					</div>
+				</div>
+				<hr>
+				<div class="card">
+					<div class="card-body">
+						<form th:object="${veiculo}" method="post" th:action="@{/veiculos/novo}">
+									<input type="hidden" th:field="*{codigo}"/>
+							<div class="row">
+								<div class="col-sm-12 col-md-8">
+									<label for="nome" class="form-label">Matricula</label>
+									<input type="text" class="form-control" id="matricula" th:field="*{matricula}">
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="nacionalidade" class="form-label">Rota</label>
+									<select class="form-control" id="rota" th:field="${veiculo.rota}">
+										<option value="">Selecione a Rota</option>
+										<option th:each="ca: ${rotas}"
+										th:value="${ca.codigo}"
+										th:text="${ca.origem}+'-'+ ${ca.destino}">
+										</option>
+									</select>
+								</div>
+								<div class="col-sm-12 col-md-8">
+									<label for="nome" class="form-label">Nome</label>
+									<input type="text" class="form-control" id="nome" th:field="*{nome}">
+								</div>
+								
+								<div class="col-sm-12 col-md-4">
+									<label for="rua" class="form-label">Tipo de documento</label>
+									<select class="form-control" id="tipoDoc" th:field="*{tipoDoc}">
+										<option value="">Selecione o tipo de documento</option>
+										<option value="BI">Bilhete de identidade</option>
+										<option value="passaporte">Passaporte</option>
+									</select>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="numero" class="form-label">Numero do documento</label>
+									<input type=text class="form-control" id="numero" th:field="*{nrDoc}"/>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for=telefone1 class="form-label">Telefone </label>
+									<input type="text" class="form-control" id="telefone1" th:field="*{telefone1}"/>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="telefone2" class="form-label">Telefone Alternativo</label>
+									<input type="text" class="form-control" id="telefone2" th:field="*{telefone2}">
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="avenida" class="form-label">Avenida</label>
+									<input type="text" class="form-control" id="avenida" th:field="*{avenida}"/>		
+								</div><div class="col-sm-12 col-md-4">
+									<label for="bairro" class="form-label">Bairro</label>
+									<input type="text" class="form-control" id="bairro" th:field="*{bairro}"/>		
+								</div><div class="col-sm-12 col-md-4">
+									<label for="quarteirao" class="form-label">Quarteirao/Predio</label>
+									<input type="text" class="form-control" id="quarteirao" th:field="*{quarteirao}"/>		
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="nrCasa" class="form-label">Numero da casa/Flat</label>
+									<input type="text" class="form-control" id="nrCasa" th:field="*{nrCasa}"/>		
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary mt-4">Salvar<i class="fa fa-user-plus"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

@@ -8,10 +8,10 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.dn.code.voo</groupId>
-	<artifactId>sistama-voo</artifactId>
+	<groupId>com.cm.code.denuncia</groupId>
+	<artifactId>sistama-denuncia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sistama-voo</name>
+	<name>sistama-denuncia</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -33,7 +33,6 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -64,7 +63,13 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+			<version>9.8.3</version>
+		</dependency>
 	</dependencies>
+	
 
 	<build>
 		<plugins>

@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Usuario;
-import com.comercial.domain.service.PerfilService;
 import com.comercial.domain.service.UsuarioService;
 
 @Controller
@@ -20,13 +19,11 @@ public class UsuarioController
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@Autowired
-	private PerfilService perfilService;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Usuario usuario)
 	{
-		return new ModelAndView("funcionarios/cadastro").addObject("perfis",perfilService.listar());
+		return new ModelAndView("funcionarios/cadastro");
 	}
 	
 	@PostMapping("/novo")

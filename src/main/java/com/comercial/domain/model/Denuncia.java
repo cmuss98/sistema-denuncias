@@ -1,13 +1,13 @@
 package com.comercial.domain.model;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,17 +17,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario 
+public class Denuncia 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long codigo;
 	
-	private String user;
+	private String pontoreferencia;
 	
-	private String senha;
+	private String descricao;
+	
+	private String status;
+	
+	private byte[] foto;
 	
 	
-	private String perfil;
+	@ManyToOne
+	@JoinColumn(name = "codigo_vei")
+	private Veiculo veiculo;
 }

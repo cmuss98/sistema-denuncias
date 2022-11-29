@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}"
+	>
+	<head>
+		<title>Cadastro de Rotas</title>
+	</head>
+	<body>
+		<section layout:fragment="conteudo">
+			<div class="container mt-4">
+				<div th:replace="fragments/mensagemSucesso.html :: alert"></div>
+				<div class="row">
+					<div class="col-12 col-sm-9">
+						<h4>Cadastro de Rotas</h4>
+					</div>
+					<div class="col-12 col-sm-3" style="text-align: right;">
+						<a type="button" class="btn btn-success" th:href="@{/rotas}">Pesquisar <i class="far fa-eye"></i></a>
+					</div>
+				</div>
+				<hr>
+				<div class="card">
+					<div class="card-body">
+						<form th:object="${rota}" method="post" th:action="@{/rotas/novo}">
+							<input type="hidden" th:field="*{codigo}"/>
+							<div class="row">
+								<div class="col-sm-12 col-md-8">
+									<label for="origem" class="form-label">Origem</label>
+									<input type="text" class="form-control" id="origem" th:field="*{origem}">
+								</div>
+								<div class="col-sm-12 col-md-8">
+									<label for="destino" class="form-label">Destino</label>
+									<input type="text" class="form-control" id="destino" th:field="*{destino}">
+								</div>
+								<div class="col-sm-12 col-md-8">
+									<label for="via" class="form-label">Via</label>
+									<input type="text" class="form-control" id="via" th:field="*{via}">
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<label for="cor" class="form-label">Cor da Barra</label>
+									<select class="form-control" id="cor" th:field="${rota.coresBarra}">
+										<option value="">Selecione a Cor da Barra</option>
+										<option th:each="ca: ${coresBarra}"
+										th:value="${ca.codigo}"
+										th:text="${ca.cor}">
+										</option>
+									</select>
+								</div>
+							</div>
+							
+							<button type="submit" class="btn btn-primary mt-4">Cadastar <i class="fa fa-user-plus"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

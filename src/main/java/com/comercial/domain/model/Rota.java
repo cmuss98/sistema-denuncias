@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,17 +15,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario 
+public class Rota 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long codigo;
 	
-	private String user;
+	private String origem;
+	private String destino;
+
+	private String via;
 	
-	private String senha;
-	
-	
-	private String perfil;
+	@ManyToOne
+	@JoinColumn(name = "codigo_cor")
+	private CoresBarra coresBarra;
 }
