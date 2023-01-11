@@ -11,8 +11,8 @@ import com.comercial.domain.model.Veiculo;
 
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
-	@Query(value="Select * from veiculo v join rota r where v.codigo_rota=r.codigo and"
-			+ " v.matricula like %:matricula%", nativeQuery=true)
+	@Query(value="Select * from veiculo v join rota r join licenca l where v.codigo_rota=r.codigo and"
+			+ "v.codigo_licenca=l.codigo and v.matricula like %:matricula%", nativeQuery=true)
 	List<Veiculo> findCaByName(@Param("matricula")String matricula);
 
 }

@@ -14,32 +14,53 @@
 						
 						
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Denuncias</a>
+							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Denuncia</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" th:href="@{/denuncias/novo}">Denunciar</a></li>
 								<li><a class="dropdown-item" th:href="@{/denuncias}">Pesquisar</a>
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Reclamacao</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" th:href="@{/reclamacoes/novo}">Adicionar</a></li>
+								<li><a class="dropdown-item" th:href="@{/reclamacoes}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Veiculo</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" th:href="@{/veiculos/novo}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/veiculos}">Alterar</a>
-								<li><a class="dropdown-item" th:href="@{/veiculos}">Eliminar</a>
+								<li><a class="dropdown-item" th:href="@{/veiculos/novo}">Adicionar</a></li>
 								<li><a class="dropdown-item" th:href="@{/veiculos}">Pesquisar</a>
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Rota</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" th:href="@{/rotas/novo}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/rotas}">Alterar</a>
-								<li><a class="dropdown-item" th:href="@{/rotas}">Eliminar</a>
+								<li><a class="dropdown-item" th:href="@{/rotas/novo}">Adicionar</a></li>
 								<li><a class="dropdown-item" th:href="@{/rotas}">Pesquisar</a>
 							</ul>
-						
-						
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Paragem</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" th:href="@{/paragens/novo}">Adicionar</a></li>
+								<li><a class="dropdown-item" th:href="@{/paragens}">Pesquisar</a>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" th:href="@{#}">Funcionario</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" th:href="@{/funcionarios/novo}">Adicionar</a></li>
+								<li><a class="dropdown-item" th:href="@{/funcionarios}">Pesquisar</a>
+							</ul>
+						</li>
 					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/principal}">voltar</a>
+						</li>
+						</ul>
 				</div>
 			</div>
 		</nav>

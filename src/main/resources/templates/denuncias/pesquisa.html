@@ -14,13 +14,13 @@
 						<h4>Pesquisa de Denuncias</h4>
 					</div>
 					<div class="col-sm-12 col-md-3" style="text-align:right;">
-						<a th:href="@{/denuncias/novo}" type="button" class="btn btn-success">Denunciar <i class="fa fa-user-plus"></i></a>
+						<a th:href="@{/denuncias/novo}" type="button" class="btn btn-success">Denunciar <i class="fa fa-plus"></i></a>
 					</div>
 				</div>
 				<form th:action="@{/denuncias/pesquisarCa}" method="get">
 					<label>Pesquisar por status</label>
 					<input type="text" name="nomePesquisa">
-					<input type="submit" value="pesquisar">
+					<input type="submit" class="btn btn-success mt-1" value="pesquisar">
 				</form>
 				<hr>
 				<table class="table table-stripped table-bordered">
@@ -41,7 +41,7 @@
 						<td th:text="${denuncia.veiculo?.matricula}"></td>
 						<td th:text="${denuncia.veiculo?.rota?.origem}+'-'+${denuncia.veiculo?.rota?.destino}"></td>
 						<td class="text-center">
-							<a th:href="@{/denuncias/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-user-edit"></i></a> 
+							<a th:href="@{/denuncias/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
 							<a th:href="@{/denuncias/remover/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
 						</td> 
 					</tr>

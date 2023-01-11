@@ -3,7 +3,7 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="UTF-8">
-		<title>ViajaNet</title>
+		<title>EncurtaD</title>
 		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/all.min.css}">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,11 +13,20 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<div th:replace="layout/fragments/navbar.html :: navbar"></div>
 		
 		<div class="content" layout:fragment="conteudo"></div>
+		<div>
+			<img src="https://jornalnoticias.co.mz/wp-content/uploads/2022/03/Transporte.jpg" />
+		</div>
+		<div>
+			<p>Não espere</p>
+			<p>que o pior aconteça</p>
+			<p>O EncurtaD é um sistema moderno, seguro e anonimo de denúncias 
+			de encurtamento de rotas que ajudará os passageiros como o Conselho 
+			Municipal a combater essa irregularidade.</p>
+		</div>
 		
 		<div th:replace="layout/fragments/footer.html :: footer"></div>
 		<script th:src="@{/js/jquery.min.js}"></script>
 		<script th:src="@{/js/popper.js}"></script>
-		<script th:src="@{/js/dncode.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 	</body>
 </html>

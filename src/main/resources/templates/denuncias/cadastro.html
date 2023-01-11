@@ -14,21 +14,32 @@
 					<div class="col-12 col-sm-9">
 						<h4>Cadastro de Denuncias</h4>
 					</div>
-					<div class="col-12 col-sm-3" style="text-align: right;">
-						<a type="button" class="btn btn-success" th:href="@{/denuncias}">Pesquisar <i class="far fa-eye"></i></a>
-					</div>
 				</div>
 				<hr>
 				<div class="card">
 					<div class="card-body">
 						<form th:object="${denuncia}" method="post" th:action="@{/denuncias/novo}">
-							<input type="hidden" th:field="*{codigo}"/>
+							<input type="hidden" />
 							<div class="row">
-								<div class="col-sm-12 col-md-8">
-									<label for="nome" class="form-label">Ponto de Referencia</label>
-									<input type="text" class="form-control" id="nome" th:field="*{pontoreferencia}">
+							<div class="col-sm-12 col-md-4">
+									<label for="capacidade">Descricao</label>
+									<input type="text" class="form-control" id="capacidade" th:field="*{descricao}"/>
+									<input type="hidden"  th:field="*{status}">
+									<input type="hidden" >
 								</div>
-							<div class="row mt-3">
+							<div class="col-sm-12 col-md-2">
+									<label for="foto">Data</label>
+									<input type="date" class="form-control" id="foto" />
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<label for="foto">Hora</label>
+									<input type="time" class="form-control" id="foto" />
+								</div>
+								
+							<div class="col-sm-12 col-md-4">
+									<label for="foto">Foto</label>
+									<input type="file" class="form-control" id="foto" th:field="*{foto}"/>
+								</div>
 								<div class="col-sm-12 col-md-4">
 									<label for="veiculo" class="form-label">Veiculo</label>
 									<select class="form-control" id="veiculo" th:field="${denuncia.veiculo}">
@@ -39,19 +50,13 @@
 										</option>
 									</select>
 								</div>	
-							</div>
-							<div class="col-sm-12 col-md-4">
-									<label for="capacidade">Descricao</label>
-									<input type="text" class="form-control" id="capacidade" th:field="*{descricao}"/>
-									<input type="hidden"  th:field="*{status}">
+								<div class="col-sm-12 col-md-4">
+									<label for="foto">Clique no botao para obter a tua localizacao</label>
+									<input type="submit" class="btn btn-success mt-1" value="localizacao">
 								</div>
 							
-							<div class="col-sm-12 col-md-4">
-									<label for="foto">Foto</label>
-									<input type="text" class="form-control" id="foto" th:field="*{foto}"/><label>Carregar Foto</label>
-								</div>
 							</div>
-							<button type="submit" class="btn btn-primary mt-4">Guardar<i class="fa fa-user-plus"></i></button>
+							<button type="submit" class="btn btn-primary mt-4">Guardar</button>
 						</form>
 					</div>
 				</div>

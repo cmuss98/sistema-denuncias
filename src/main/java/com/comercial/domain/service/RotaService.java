@@ -32,9 +32,9 @@ public class RotaService
 	{
 		return rotaRepository.findAll();
 	}
-	public List<Rota> pesquisarNome(String origem)
+	public List<Rota> pesquisarNome(String via)
 	{
-		return rotaRepository.findCaByName(origem);
+		return rotaRepository.findCaByName(via);
 	}
 	
 	@Transactional

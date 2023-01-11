@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.comercial.domain.model.Rota;
 import com.comercial.domain.repository.RotaRepository;
 import com.comercial.domain.service.RotaService;
-import com.comercial.domain.service.CoresBarraService;
+import com.comercial.domain.service.CorBarraService;
 
 import groovyjarjarpicocli.CommandLine.Model;
 
@@ -24,11 +24,12 @@ public class RotaController {
 	private RotaService rotaService;
 	
 	@Autowired
-	private CoresBarraService coresBarraService;
+	private CorBarraService coresBarraService;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Rota rota)
 	{
+		
 		return new ModelAndView("rotas/cadastro").addObject("coresBarra",coresBarraService.listar());
 	}
 	

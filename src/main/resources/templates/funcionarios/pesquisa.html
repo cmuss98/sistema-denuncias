@@ -2,7 +2,7 @@
 <html 
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+	layout:decorate="~{layout/layout2}">
 	<head>
 		<title>ViajaNet - Funcionarios</title>
 	</head>
@@ -20,7 +20,7 @@
 				<form th:action="@{/funcionarios/pesquisarCa}" method="get">
 					<label>Pesquisar pelo user</label>
 					<input type="text" name="nomePesquisa">
-					<input type="submit" value="pesquisar">
+					<input type="submit"  class="btn btn-success mt-1" value="pesquisar">
 				</form>
 				<hr>
 				<table class="table table-stripped table-bordered">
@@ -35,7 +35,7 @@
 						<td th:text="${cliente.codigo}"></td>
 						<td th:text="${cliente.user}"></td>
 						<td th:text="${cliente.senha}"></td>
-						<td th:text="${cliente.perfil?.perfil}"></td>
+						<td th:text="${cliente.perfil}"></td>
 						<td class="text-center">
 							<a th:href="@{/funcionarios/{codigo}(codigo = ${cliente.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-user-edit"></i></a> 
 							<a th:href="@{/funcionarios/remover/{codigo}(codigo = ${cliente.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 

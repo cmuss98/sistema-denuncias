@@ -14,21 +14,21 @@
 						<h4>Pesquisa de Veiculos</h4>
 					</div>
 					<div class="col-sm-12 col-md-3" style="text-align:right;">
-						<a th:href="@{/Veiculos/novo}" type="button" class="btn btn-success">Cadastrar <i class="fa fa-user-plus"></i></a>
+						<a th:href="@{/veiculos/novo}" type="button" class="btn btn-success">Cadastrar <i class="fa fa-plus"></i></a>
 					</div>
 				</div>
-				<form th:action="@{/Veiculos/pesquisarCa}" method="get">
+				<form th:action="@{/veiculos/pesquisarCa}" method="get">
 					<label>Pesquisar pela matricula</label>
 					<input type="text" name="nomePesquisa">
-					<input type="submit" value="pesquisar">
+					<input type="submit" class="btn btn-success mt-1" value="pesquisar">
 				</form>
 				<hr>
 				<table class="table table-stripped table-bordered">
 					<tr>
 						<th class="col-1">Codigo</th>
-						<th class="col-1">Matricula</th>
+						<th class="col-2">Matricula</th>
 						<th class="col-2">Rota</th>
-						<th class="col-3">Nome do Propretario</th>
+						<th class="col-2">Nome do Propretario</th>
 						<th class="col-1">Documento</th>
 						<th class="col-1">Telefone</th>
 						<th class="col-1">Telefone Alternativo</th>
@@ -36,7 +36,7 @@
 						<th class="col-2">Bairro</th>
 						<th class="col-1">Quarteirao</th>
 						<th class="col-1">Nr da Casa</th>
-						<th class="col-1 text-center"><i class="fa fa-cogs"></i></th>
+						<th class="col-2 text-center"><i class="fa fa-cogs"></i></th>
 					</tr>
 					<tr th:each="veiculo: ${veiculos}">
 						<td th:text="${veiculo.codigo}"></td>
@@ -50,8 +50,8 @@
 						<td th:text="${veiculo.bairro}"></td>
 						<td th:text="${veiculo.quarteirao}"></td>	
 						<td th:text="${veiculo.nrCasa}"></td>
-						<td class="text-center">
-							<a th:href="@{/veiculos/{codigo}(codigo = ${veiculo.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-user-edit"></i></a> 
+						<td class="text-center" >
+							<a th:href="@{/veiculos/{codigo}(codigo = ${veiculo.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
 							<a th:href="@{/veiculos/remover/{codigo}(codigo = ${veiculo.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
 						</td> 
 					</tr>

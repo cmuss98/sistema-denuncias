@@ -11,7 +11,8 @@ import com.comercial.domain.model.Denuncia;
 
 @Repository
 public interface DenunciaRepository extends JpaRepository<Denuncia, Long>{
-	@Query(value="Select * from denuncia a join veiculo v where"
-			+ " a.codigo_vei=v.codigo and a.status like %:status%", nativeQuery=true)
+	@Query(value="Select * from denuncia d join veiculo v  join avaliacao a where"
+			+ " d.codigo_vei=v.codigo and d.codigo_avaliacao=d.codigo"
+			+ "d.status like %:status%", nativeQuery=true)
 	List<Denuncia> findCaByName(@Param("status")String status);
 }

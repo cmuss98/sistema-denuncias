@@ -120,7 +120,7 @@ iframe {
 .txt1 {
   font-family: Ubuntu-Regular;
   font-size: 16px;
-  color: #827ffe;
+  color: #808080;
   line-height: 1.4;
 }
 
@@ -171,7 +171,7 @@ iframe {
 .login100-form-title {
   font-family: Ubuntu-Bold;
   font-size: 30px;
-  color: #403866;
+  color: #343a40;
   line-height: 1.2;
   text-transform: uppercase;
   text-align: center;
@@ -296,7 +296,7 @@ iframe {
   height: 18px;
   border-radius: 3px;
   background: #fff;
-  border: 2px solid #827ffe;
+  border: 2px solid #808080;
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -307,7 +307,7 @@ iframe {
 }
 
 .input-checkbox100:checked + .label-checkbox100::before {
-  color: #827ffe;
+  color: #808080;
 }
 
 
@@ -340,7 +340,7 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 62px;
-  background-color: #827ffe;
+  background-color: #808080;
   border-radius: 3px;
 
   -webkit-transition: all 0.4s;
@@ -350,7 +350,7 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  background-color: #403866;
+  background-color: #343a40;
 }
 
 

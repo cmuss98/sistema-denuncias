@@ -1,6 +1,8 @@
 package com.comercial.domain.model;
 
-
+import java.io.File;
+import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,18 +24,26 @@ public class Denuncia
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private Long codigo;
-	
-	private String pontoreferencia;
+	private long codigo;
 	
 	private String descricao;
 	
 	private String status;
 	
-	private byte[] foto;
+	private String localizacao;
+	
+	private Date data;
+	
+	private Time hora;
+	
+	private File foto;
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "codigo_vei")
+	@JoinColumn(name = "codigo_veiculo")
 	private Veiculo veiculo;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_avaliacao")
+	private Avaliacao avaliacao;
 }

@@ -9,39 +9,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.comercial.domain.model.Usuario;
-import com.comercial.domain.service.UsuarioService;
+import com.comercial.domain.model.Funcionario;
+import com.comercial.domain.service.FuncionarioService;
+import com.comercial.domain.service.MoradaService;
+import com.comercial.domain.service.TrabalhoService;
 
 @Controller
 @RequestMapping("/funcionarios")
-public class UsuarioController 
+public class FuncionarioController 
 {
 	@Autowired
-	private UsuarioService usuarioService;
+	private FuncionarioService funcionarioService;
+	
+	@Autowired
+	private MoradaService moradaService;
+	
+	@Autowired
+	private TrabalhoService trabalhoService;
 	
 	
 	@GetMapping("/novo")
-	public ModelAndView novo(Usuario usuario)
+	public ModelAndView novo(Funcionario usuario)
 	{
-		return new ModelAndView("funcionarios/cadastro");
+		ModelAndView mv=new ModelAndView("funcionarios/cadastro");
+		mv.addObject("moradas", moradaService.listar());
+		mv.addObject("trabalhos", trabalhoService.listar());
+		return mv;
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvar(Usuario usuario, RedirectAttributes attributes)
+	public ModelAndView salvar(Funcionario funcionario, RedirectAttributes attributes)
 	{
-		usuarioService.salvar(usuario);
-		attributes.addFlashAttribute("mensagem", "Usuario cadastrado com sucesso");
+		funcionarioService.salvar(funcionario);
+		attributes.addFlashAttribute("mensagem", String.format("Funcionario de nome %s cadastrado com sucesso", funcionario.getNome()));
 		return new ModelAndView("redirect:/funcionarios/novo");
 	}
 	
 	@GetMapping
 	public ModelAndView listar()
 	{
-		return new ModelAndView("funcionarios/pesquisa").addObject("usuarios", usuarioService.listar());
+		return new ModelAndView("funcionarios/pesquisa").addObject("funcionarios", funcionarioService.listar());
 	}
 	
 	@GetMapping("/{codigo}")
-	public ModelAndView editar(@PathVariable("codigo") Usuario usuario, RedirectAttributes attributes)
+	public ModelAndView editar(@PathVariable("codigo") Funcionario usuario, RedirectAttributes attributes)
 	{
 		attributes.addFlashAttribute("usuario", usuario);
 		return new ModelAndView("redirect:/funcionarios/novo");
@@ -50,14 +61,14 @@ public class UsuarioController
 	@GetMapping("/remover/{codigo}")
 	public ModelAndView remover(@PathVariable("codigo") Long codigo)
 	{
-		usuarioService.remover(codigo);
+		funcionarioService.remover(codigo);
 		return new ModelAndView("redirect:/funcionarios");
 	}
 	@GetMapping("/pesquisarCa")
 	public ModelAndView getCA(String nomePesquisa)
 	{
 		ModelAndView mv=new ModelAndView("funcionarios/pesquisa");
-		mv.addObject("usuarios", usuarioService.pesquisarNome(nomePesquisa));
+		mv.addObject("usuarios", funcionarioService.pesquisarNome(nomePesquisa));
 		return mv;
 	}
 

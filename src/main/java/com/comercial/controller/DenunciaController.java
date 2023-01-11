@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Denuncia;
+import com.comercial.domain.service.AvaliacaoService;
 import com.comercial.domain.service.DenunciaService;
 import com.comercial.domain.service.VeiculoService;
 
@@ -24,18 +25,23 @@ public class DenunciaController
 	private DenunciaService denunciaService;
 	@Autowired
 	private VeiculoService veiculoService;
+	@Autowired
+	private AvaliacaoService avaliacaoService;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Denuncia denuncia)
 	{
-		return new ModelAndView("denuncias/cadastro").addObject("veiculos",veiculoService.listar());
+		ModelAndView mv=new ModelAndView("denuncias/cadastro");
+		mv.addObject("veiculos",veiculoService.listar());
+		mv.addObject("avaliacoes", avaliacaoService.listar());
+		return mv;
 	}
 	
 	@PostMapping("/novo")
 	public ModelAndView salvar(Denuncia denuncia, RedirectAttributes attributes)
 	{
 		denunciaService.salvar(denuncia);
-		attributes.addFlashAttribute("mensagem", String.format("Denuncia de referencia %s cadastrado com sucesso", denuncia.getPontoreferencia()));
+		attributes.addFlashAttribute("mensagem", String.format("Denuncia de veiculo %s cadastrado com sucesso", denuncia.getVeiculo()));
 		return new ModelAndView("redirect:/denuncias/novo");
 	}
 	
@@ -43,7 +49,6 @@ public class DenunciaController
 	public ModelAndView listar()
 	{
 		return new ModelAndView("denuncias/pesquisa").addObject("denuncias", denunciaService.listar());
-		
 	}
 	
 	@GetMapping("/{codigo}")
