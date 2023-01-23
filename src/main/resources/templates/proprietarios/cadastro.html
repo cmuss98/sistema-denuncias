@@ -4,7 +4,7 @@
 	layout:decorate="~{layout/layout2}"
 	>
 	<head>
-		<title>Cadastro de funcionarios</title>
+		<title>Cadastro de Proprietarios</title>
 	</head>
 	<body>
 		<section layout:fragment="conteudo">
@@ -12,16 +12,16 @@
 				<div th:replace="fragments/mensagemSucesso.html :: alert"></div>
 				<div class="row">
 					<div class="col-12 col-sm-9">
-						<h4>Cadastro de funcionarios</h4>
+						<h4>Cadastro de Proprietarios</h4>
 					</div>
 					<div class="col-12 col-sm-3" style="text-align: right;">
-						<a type="button" class="btn btn-success" th:href="@{/funcionarios}">Pesquisar <i class="far fa-eye"></i></a>
+						<a type="button" class="btn btn-success" th:href="@{/proprietarios}">Pesquisar <i class="far fa-eye"></i></a>
 					</div>
 				</div>
 				<hr>
 				<div class="card">
 					<div class="card-body">
-						<form th:object="${usuario}" method="post" th:action="@{/funcionarios/novo}">
+						<form th:object="${proprietario}" method="post" th:action="@{/proprietarios/novo}">
 							<input type="hidden" th:field="*{codigo}"/>
 							<div class="row">
 							<div class="col-sm-12 col-md-5">
@@ -34,7 +34,7 @@
 								</div>
 								<div class="col-sm-12 col-md-2">
 									<label for="descricao" class="form-label">Tipo de documento</label>
-									<select class="form-control" id="descricao" z>
+									<select class="form-control" id="descricao" th:field="${proprietario.documento?.tipoDocumento}">
 										<option value="">Selecione o tipo de documento</option>
 										<option th:each="ca: ${tipoDocumentos}"
 										th:value="${ca.codigo}"
@@ -44,15 +44,15 @@
 								</div>
 								<div class="col-sm-12 col-md-3">
 									<label for="numero" class="form-label">Numero de documento</label>
-									<input type="text" class="form-control" id="numero" th:field="${funcionario.documento?.numero}">
+									<input type="text" class="form-control" id="numero" th:field="${proprietario.documento?.numero}">
 								</div>
 								<div class="col-sm-12 col-md-2">
 									<label for="dataEmissao" class="form-label">Data de Emissao</label>
-									<input type="date" class="form-control" id="dataEmissao" th:field="${funcionario.documento?.dataEmissao}">
+									<input type="date" class="form-control" id="dataEmissao" th:field="${proprietario.documento?.dataEmissao}">
 								</div>
 								<div class="col-sm-12 col-md-2">
 									<label for="dataValidade" class="form-label">Data de Validade</label>
-									<input type="date" class="form-control" id="dataValidade" th:field="${funcionario.documento?.dataValidade}">
+									<input type="date" class="form-control" id="dataValidade" th:field="${proprietario.documento?.dataValidade}">
 								</div>
 								<div class="col-sm-12 col-md-1">
 									<label for="genero" class="form-label">Genero</label>
@@ -64,29 +64,19 @@
 								</div>
 								<div class="col-sm-12 col-md-3">
 									<label for="avenida" class="form-label">Avenida</label>
-									<input type="text" class="form-control" id="avenida" th:field="${funcionario.morada?.avenida}">
+									<input type="text" class="form-control" id="avenida" th:field="${proprietario.morada?.avenida}">
 								</div>
 								<div class="col-sm-12 col-md-4">
 									<label for="bairro" class="form-label">Bairro</label>
-									<input type="text" class="form-control" id="bairro" th:field="${funcionario.morada?.bairro}">
+									<input type="text" class="form-control" id="bairro" th:field="${proprietario.morada?.bairro}">
 								</div>
 								<div class="col-sm-12 col-md-2">
 									<label for="casa" class="form-label">Nr. da casa</label>
-									<input type="text" class="form-control" id="casa" th:field="${funcionario.morada?.casa}">
-								</div>
-								<div class="col-sm-12 col-md-2">
-									<label for="dirrecao" class="form-label">Dirrecao e o trabalho</label>
-									<select class="form-control" id="dirrecao" th:field="${funcionario.trabalho}">
-										<option value="">Selecione a Dirrecao</option>
-										<option th:each="ca: ${trabalhos}"
-										th:value="${ca.codigo}"
-										th:text="${ca.dirrecao}+'-'+${ca.descricao}">
-										</option>
-									</select>
+									<input type="text" class="form-control" id="casa" th:field="${proprietario.morada?.casa}">
 								</div>
 								<div class="col-sm-12 col-md-1">
 									<label for="descricao" class="form-label">Contacto</label>
-									<select class="form-control" id="descricao" th:field="${funcionario.contacto?.descricao}">
+									<select class="form-control" id="descricao" th:field="${proprietario.contacto?.descricao}">
 										<option value="">Selecione o contacto</option>
 										<option th:each="ca: ${contactos}"
 										th:value="${ca.codigo}"
@@ -96,17 +86,8 @@
 								</div>
 								<div class="col-sm-12 col-md-2">
 									<label for="numero" class="form-label">Numero</label>
-									<input type="text" class="form-control" id="numero" th:field="${funcionario.contacto?.numero}">
+									<input type="text" class="form-control" id="numero" th:field="${proprietario.contacto.numero}">
 								</div>
-								<div class="col-sm-12 col-md-4">
-									<label for="user" class="form-label">UserName</label>
-									<input type="text" class="form-control" id="user" th:field="*{user}">
-								</div>
-								<div class="col-sm-12 col-md-4">
-									<label for="senha" class="form-label">Password</label>
-									<input type="text" class="form-control" id="senha" th:field="*{password}"/>
-								</div>
-								
 							</div>
 								<button type="submit" class="btn btn-primary mt-4">Cadastar <i class="fa fa-user-plus"></i></button>
 						</form>

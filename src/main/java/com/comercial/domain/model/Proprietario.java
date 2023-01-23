@@ -25,7 +25,7 @@ public class Proprietario
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private long codigo;
+	private Long codigo;
 	
 	private String nome;
 	
@@ -40,4 +40,8 @@ public class Proprietario
 	@OneToOne
 	@JoinColumn(name = "codigo_veiculo")
 	private Veiculo veiculo;
+	
+	@OneToOne
+	@JoinColumn(name = "codigo_documento")
+	private Documento documento;
 }

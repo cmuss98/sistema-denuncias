@@ -11,7 +11,8 @@ import com.comercial.domain.model.Rota;
 
 @Repository
 public interface RotaRepository extends JpaRepository<Rota, Long>{
-	@Query(value="Select * from rota r join corBarra cb where" 
+	@Query(value="Select * from rota r join corbarra cb where" 
 					+ " r.codigo_cor=cb.codigo and  r.via like %:via%", nativeQuery=true)
 	List<Rota> findCaByName(@Param("via")String via);
 }
+

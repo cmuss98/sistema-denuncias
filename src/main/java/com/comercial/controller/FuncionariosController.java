@@ -24,8 +24,6 @@ public class FuncionariosController
 	@PostMapping("/verificar")
 	public ModelAndView verificar()
 	{
-		//denunciaService.salvar(denuncia);
-	//	attributes.addFlashAttribute("mensagem", String.format("Denuncia de referencia %s cadastrado com sucesso", denuncia.getPontoreferencia()));
 		return new ModelAndView("redirect:/principal");
 	}
 	

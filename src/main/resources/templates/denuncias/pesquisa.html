@@ -26,27 +26,32 @@
 				<table class="table table-stripped table-bordered">
 					<tr>
 						<th class="col-1">Codigo</th>
-						<th class="col-3">Ponto de Referencia</th>
+						<th class="col-3">Descricao</th>
 						<th class="col-2">Status</th>
 						<th class="col-2">Foto</th>
-						<th class="col-2">Matricula</th>
-						<th class="col-2">Rota</th>
+						<th class="col-2">Localizacao</th>
+						<th class="col-2">Data</th>
+						<th class="col-2">Hora</th>
+						<th class="col-2">Avaliacao</th>
+						<th class="col-2">Veiculo</th>
 						<th class="col-1 text-center"><i class="fa fa-cogs"></i></th>
 					</tr>
 					<tr th:each="denuncia: ${denuncias}">
 						<td th:text="${denuncia.codigo}"></td>
-						<td th:text="${denuncia.pontoreferencia}"></td>
+						<td th:text="${denuncia.descricao}"></td>
 						<td th:text="${denuncia.status}"></td>
 						<td th:text="${denuncia.foto}"></td>
-						<td th:text="${denuncia.veiculo?.matricula}"></td>
-						<td th:text="${denuncia.veiculo?.rota?.origem}+'-'+${denuncia.veiculo?.rota?.destino}"></td>
+						<td th:text="${denuncia.localizacao}"></td>
+						<td th:text="${denuncia.data}"></td>
+						<td th:text="${denuncia.avaliacao}"></td>
+						<td th:text="${denuncia.veiculo?.matricula}+'-'+${denuncia.veiculo?.matricula}"></td>
 						<td class="text-center">
 							<a th:href="@{/denuncias/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
 							<a th:href="@{/denuncias/remover/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
 						</td> 
 					</tr>
 					<tr th:if="${#lists.isEmpty(denuncias)}">
-						<td colspan="6" class="text-center">Nenhum cadastro de denuncias encontrado</td>
+						<td colspan="10" class="text-center">Nenhum cadastro de denuncias encontrado</td>
 					</tr>
 				</table>
 			</div>

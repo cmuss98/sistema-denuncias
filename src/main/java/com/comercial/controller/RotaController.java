@@ -5,16 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Rota;
-import com.comercial.domain.repository.RotaRepository;
 import com.comercial.domain.service.RotaService;
 import com.comercial.domain.service.CorBarraService;
-
-import groovyjarjarpicocli.CommandLine.Model;
+import com.comercial.domain.service.OrigemDestinoService;
 
 
 @Controller
@@ -26,11 +23,16 @@ public class RotaController {
 	@Autowired
 	private CorBarraService coresBarraService;
 	
+	@Autowired
+	private OrigemDestinoService origemDestinoService;
+	
 	@GetMapping("/novo")
 	public ModelAndView novo(Rota rota)
 	{
-		
-		return new ModelAndView("rotas/cadastro").addObject("coresBarra",coresBarraService.listar());
+		ModelAndView mv=new ModelAndView("rotas/cadastro");
+		mv.addObject("coresBarra",coresBarraService.listar());
+		mv.addObject("origens", origemDestinoService.listar());
+		return mv;
 	}
 	
 	@PostMapping("/novo")

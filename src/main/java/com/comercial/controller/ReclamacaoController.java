@@ -11,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Reclamacao;
-import com.comercial.domain.model.Veiculo;
-import com.comercial.domain.service.LicencaService;
 import com.comercial.domain.service.ReclamacaoService;
-import com.comercial.domain.service.RotaService;
 import com.comercial.domain.service.VeiculoService;
 
 @Controller
@@ -30,7 +27,7 @@ public class ReclamacaoController
 	
 	
 	@GetMapping("/novo")
-	public ModelAndView novo()
+	public ModelAndView novo(Reclamacao reclamacao)
 	{
 		return new ModelAndView("reclamacoes/cadastro").addObject("veiculos",veiculoService.listar());
 	}

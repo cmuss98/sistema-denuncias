@@ -28,35 +28,25 @@
 						<th class="col-1">Codigo</th>
 						<th class="col-2">Matricula</th>
 						<th class="col-2">Rota</th>
-						<th class="col-2">Nome do Propretario</th>
-						<th class="col-1">Documento</th>
-						<th class="col-1">Telefone</th>
-						<th class="col-1">Telefone Alternativo</th>
-						<th class="col-2">Avenida</th>
-						<th class="col-2">Bairro</th>
-						<th class="col-1">Quarteirao</th>
-						<th class="col-1">Nr da Casa</th>
+						<th class="col-1">Licenca</th>
+						<th class="col-2">Data de Emissao</th>
+						<th class="col-2">Data Validade</th>
 						<th class="col-2 text-center"><i class="fa fa-cogs"></i></th>
 					</tr>
 					<tr th:each="veiculo: ${veiculos}">
 						<td th:text="${veiculo.codigo}"></td>
 						<td th:text="${veiculo.matricula}"></td>
-						<td th:text="${veiculo.rota?.origem}+'-'+${veiculo.rota?.origem}"></td>
-						<td th:text="${veiculo.nome}"></td>
-						<td th:text="${veiculo.nrDoc}"></td>
-						<td th:text="${veiculo.telefone1}"></td>	
-						<td th:text="${veiculo.telefone2}"></td>
-						<td th:text="${veiculo.avenida}"></td>
-						<td th:text="${veiculo.bairro}"></td>
-						<td th:text="${veiculo.quarteirao}"></td>	
-						<td th:text="${veiculo.nrCasa}"></td>
+						<td th:text="${veiculo.rota?.origemDestino}+'-'+${veiculo.rota?.origemDestino}+"></td>
+						<td th:text="${veiculo.Documento?.numero}"></td>
+						<td th:text="${veiculo.Documento?.dataEmissao}"></td>
+						<td th:text="${veiculo.Documento?.dataValidade}"></td>	
 						<td class="text-center" >
 							<a th:href="@{/veiculos/{codigo}(codigo = ${veiculo.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
 							<a th:href="@{/veiculos/remover/{codigo}(codigo = ${veiculo.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
 						</td> 
 					</tr>
 					<tr th:if="${#lists.isEmpty(veiculos)}">
-						<td colspan="11" class="text-center">Nenhum cadastro de Veiculo encontrado</td>
+						<td colspan="7" class="text-center">Nenhum cadastro de Veiculo encontrado</td>
 					</tr>
 				</table>
 			</div>

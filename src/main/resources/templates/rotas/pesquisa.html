@@ -33,9 +33,9 @@
 					</tr>
 					<tr th:each="ca: ${rotas}">
 						<td th:text="${ca.codigo}"></td>
-						<td th:text="${ca.origem}+'-'+${ca.destino}"></td>	
+						<td th:text="${ca.origemDestino?.descricao}+'-'${ca.origemDestino?.descricao}+"></td>	
 						<td th:text="${ca.via}"></td>
-						<td th:text="${ca.coresBarra?.cor}"></td>
+						<td th:text="${ca.corBarra?.cor}"></td>
 						<td class="text-center">
 							<a th:href="@{/rotas/{codigo}(codigo = ${ca.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
 							<a th:href="@{/rotas/remover/{codigo}(codigo = ${ca.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 

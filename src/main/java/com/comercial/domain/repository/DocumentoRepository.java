@@ -11,9 +11,7 @@ import com.comercial.domain.model.Documento;
 
 @Repository
 public interface DocumentoRepository extends JpaRepository<Documento, Long>{
-	@Query(value="Select * from Documento d join tipoDocumento tp join veiculo v"
-			+ " join proprietario p where d.codigo_tipoDocumento=tp.codigo and "
-			+ "d.codigo_proprietario=p.codigo and d.codigo_veiculo=v.codigo"
-			+ "and d.numero like %:numero%", nativeQuery=true)
+	@Query(value="Select * from Documento d join tipoDocumento tp where d.codigo_tipoDocumento=tp.codigo and "
+			+ "d.numero like %:numero%", nativeQuery=true)
 List<Documento> findCaByName(@Param("numero")String numero);
 }

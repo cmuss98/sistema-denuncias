@@ -14,11 +14,11 @@
 						<h4>Pesquisa de Rotas</h4>
 					</div>
 					<div class="col-sm-12 col-md-3" style="text-align:right;">
-						<a th:href="@{/rotas/novo}" type="button" class="btn btn-success">Cadastrar <i class="fa fa-plus"></i></a>
+						<a th:href="@{/paragens/novo}" type="button" class="btn btn-success">Cadastrar <i class="fa fa-plus"></i></a>
 					</div>
 				</div>
-				<form th:action="@{/rotas/pesquisarCa}" method="get">
-					<label>Pesquisar por origem</label>
+				<form th:action="@{/paragens/pesquisarCa}" method="get">
+					<label>Pesquisar por descricao</label>
 					<input type="text" name="nomePesquisa">
 					<input type="submit" class="btn btn-success mt-1" value="pesquisar">
 				</form>
@@ -26,22 +26,20 @@
 				<table class="table table-stripped table-bordered">
 					<tr>
 						<th class="col-1">Codigo</th>
+						<th class="col-2">Descricao</th>
 						<th class="col-3">Origem-Destino</th>
-						<th class="col-2">Via de Acesso</th>
-						<th class="col-2">Cor da Barra</th>
 						<th class="col-1 text-center"><i class="fa fa-cogs"></i></th>
 					</tr>
-					<tr th:each="ca: ${rotas}">
-						<td th:text="${ca.codigo}"></td>
-						<td th:text="${ca.origem}+'-'+${ca.destino}"></td>	
-						<td th:text="${ca.via}"></td>
-						<td th:text="${ca.coresBarra?.cor}"></td>
+					<tr th:each="ca: ${paragens}">
+						<td th:text="${ca.codigo}"></td>	
+						<td th:text="${ca.descricao}"></td>
+						<td th:text="${ca.rota_origemDestino}+'-'${ca.rota_origemDestino}+"></td>	
 						<td class="text-center">
-							<a th:href="@{/rotas/{codigo}(codigo = ${ca.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
-							<a th:href="@{/rotas/remover/{codigo}(codigo = ${ca.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
+							<a th:href="@{/paragens/{codigo}(codigo = ${ca.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
+							<a th:href="@{/paragens/remover/{codigo}(codigo = ${ca.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 
 						</td> 
 					</tr>
-					<tr th:if="${#lists.isEmpty(rotas)}">
+					<tr th:if="${#lists.isEmpty(paragens)}">
 						<td colspan="6" class="text-center">Nenhum cadastro de rotas encontrado</td>
 					</tr>
 				</table>

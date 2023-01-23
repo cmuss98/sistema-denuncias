@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}"
+	layout:decorate="~{layout/layout1}"
 	>
 	<head>
 		<title>Cadastro de Reclamacoes</title>
@@ -14,37 +14,34 @@
 					<div class="col-12 col-sm-9">
 						<h4>Cadastro de Reclamacoes</h4>
 					</div>
-					<div class="col-12 col-sm-3" style="text-align: right;">
-						<a type="button" class="btn btn-success" th:href="@{/rotas}">Pesquisar <i class="far fa-eye"></i></a>
-					</div>
 				</div>
-				<hr>
 				<div class="card">
 					<div class="card-body">
-						<form  method="post" th:action="@{/reclamacoes/novo}">
-							<input type="hidden" />
+						<form th:object="${reclamacao}" method="post" th:action="@{/reclamacoes/novo}">
+							<input type="hidden" th:field="*{codigo}"/>
 							<div class="row">
 							<div class="col-sm-12 col-md-2">
-									<label for="cor" class="form-label">Veiculo</label>
-									<select class="form-control" id="cor" >
+									<label for="veiculo" class="form-label">Veiculo</label>
+									<select class="form-control" id="veiculo" th:field="${reclamacao.veiculo}">
 										<option value="">Selecione o Veiculo</option>
-										
+										<option th:each="ca: ${reclamacoes}"
+										th:value="${ca.codigo}"
+										th:text="${ca.matricula}+'-'+ ${ca.cor}">
+										</option>
 									</select>
 								</div>
 								<div class="col-sm-12 col-md-2">
-									<label for="via" class="form-label">Data</label>
-									<input type="date" class="form-control" id="via" >
+									<label for="data" class="form-label">Data</label>
+									<input type="date" class="form-control" id="data" th:field="*{data}">
 								</div>
 								<div class="col-sm-12 col-md-2">
-									<label for="via" class="form-label">Hora</label>
-									<input type="time" class="form-control" id="via" >
+									<label for="hora" class="form-label">Hora</label>
+									<input type="time" class="form-control" id="hora" th:field="*{hora}">
 								</div>
 								<div class="col-sm-12 col-md-6">
-									<label for="cor" class="form-label">Descricao</label>
-									<textarea rows="6" cols="4" class="form-control" id="via"></textarea>
-								</div>
-								
-								
+									<label for="descricao" class="form-label">Descricao</label>
+									<textarea rows="6" cols="4" class="form-control" id="descricao" th:field="*{descricao}"></textarea>
+								</div>	
 							</div>
 							
 							<button type="submit" class="btn btn-primary mt-4">Salvar </button>

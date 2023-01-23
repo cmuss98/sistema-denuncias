@@ -26,7 +26,7 @@ public class Veiculo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private long codigo;
+	private Long codigo;
 	
 	private String matricula;
 	
@@ -37,11 +37,7 @@ public class Veiculo
 	private Rota rota;
 	
 	@OneToOne
-	@JoinColumn(name = "codigo_licenca")
-	private Licenca licenca;
-	
-	
-	
-
+	@JoinColumn(name = "codigo_documento")
+	private Documento documento;
 	
 }

@@ -21,18 +21,21 @@
 				<hr>
 				<div class="card">
 					<div class="card-body">
-						<form th:object="${rota}" method="post" th:action="@{/paragens/novo}">
-							<input type="hidden" />
+						<form th:object="${paragem}" method="post" th:action="@{/paragens/novo}">
+							<input type="hidden" th:field="*{codigo}"/>
 							<div class="row">
 								<div class="col-sm-12 col-md-5">
-									<label for="via" class="form-label">Descricao</label>
-									<input type="text" class="form-control" id="via" >
+									<label for="descricao" class="form-label">Descricao</label>
+									<input type="text" class="form-control" id="descricao" th:field="*{descricao}" >
 								</div>
 								<div class="col-sm-12 col-md-5">
 									<label for="cor" class="form-label">Rota</label>
-									<select class="form-control" id="cor" >
+									<select class="form-control" id="rota" th:field="${paragem.rota}">
 										<option value="">Selecione a Rota</option>
-										
+										<option th:each="ca: ${rotas}"
+										th:value="${ca.codigo}"
+										th:text="${ca.origemDestino}+'-'+ ${ca.via}">
+										</option>
 									</select>
 								</div>
 							</div>

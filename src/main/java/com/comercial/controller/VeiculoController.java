@@ -11,8 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Veiculo;
 import com.comercial.domain.service.VeiculoService;
-import com.comercial.domain.service.CorBarraService;
-import com.comercial.domain.service.LicencaService;
+import com.comercial.domain.service.DocumentoService;
 import com.comercial.domain.service.RotaService;
 
 @Controller
@@ -26,7 +25,8 @@ public class VeiculoController
 	private RotaService rotaService;
 	
 	@Autowired
-	private LicencaService licencaService;
+	private DocumentoService documentoService;
+	
 	
 	
 	@GetMapping("/novo")
@@ -34,7 +34,7 @@ public class VeiculoController
 	{
 		ModelAndView mv=new ModelAndView("veiculos/cadastro");
 		mv.addObject("rotas", rotaService.listar());
-		mv.addObject("licencas", licencaService.listar());
+		mv.addObject("documentos", documentoService.listar());
 		return mv;
 
 	}

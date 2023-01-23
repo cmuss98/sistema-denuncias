@@ -10,80 +10,78 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Funcionario;
+import com.comercial.domain.model.Proprietario;
 import com.comercial.domain.service.ContactoService;
 import com.comercial.domain.service.DocumentoService;
 import com.comercial.domain.service.FuncionarioService;
 import com.comercial.domain.service.MoradaService;
+import com.comercial.domain.service.ProprietarioService;
 import com.comercial.domain.service.TipoDocumentoService;
 import com.comercial.domain.service.TrabalhoService;
 
 @Controller
-@RequestMapping("/funcionarios")
-public class FuncionarioController 
+@RequestMapping("/proprietarios")
+public class ProprietarioController 
 {
 	@Autowired
-	private FuncionarioService funcionarioService;
+	private ProprietarioService proprietarioService;
 	
 	@Autowired
 	private MoradaService moradaService;
-	
-	@Autowired
-	private TrabalhoService trabalhoService;
 	
 	@Autowired
 	private DocumentoService documentoService;
 	
 	@Autowired
 	private TipoDocumentoService tipoDocumentoService;
-	
+
 	@Autowired
 	private ContactoService contactoService;
 	
 	
 	@GetMapping("/novo")
-	public ModelAndView novo(Funcionario usuario)
+	public ModelAndView novo(Proprietario proprietario)
 	{
-		ModelAndView mv=new ModelAndView("funcionarios/cadastro");
+		ModelAndView mv=new ModelAndView("proprietarios/cadastro");
 		mv.addObject("moradas", moradaService.listar());
-		mv.addObject("trabalhos", trabalhoService.listar());
-		mv.addObject("documentos", documentoService.listar());
 		mv.addObject("contactos", contactoService.listar());
+		mv.addObject("documentos", documentoService.listar());
 		mv.addObject("tipoDocumentos", tipoDocumentoService.listar());
 		return mv;
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvar(Funcionario funcionario, RedirectAttributes attributes)
+	public ModelAndView salvar(Proprietario proprietario, RedirectAttributes attributes)
 	{
-		funcionarioService.salvar(funcionario);
-		attributes.addFlashAttribute("mensagem", String.format("Funcionario de nome %s cadastrado com sucesso", funcionario.getNome()));
-		return new ModelAndView("redirect:/funcionarios/novo");
+		proprietarioService.salvar(proprietario);
+		attributes.addFlashAttribute("mensagem", String.format("Proprietario de nome %s cadastrado com sucesso", proprietario.getNome()));
+		return new ModelAndView("redirect:/proprietarios/novo");
 	}
 	
 	@GetMapping
 	public ModelAndView listar()
 	{
-		return new ModelAndView("funcionarios/pesquisa").addObject("funcionarios", funcionarioService.listar());
+		return new ModelAndView("proprietarios/pesquisa").addObject("proprietarios", proprietarioService.listar());
 	}
 	
 	@GetMapping("/{codigo}")
-	public ModelAndView editar(@PathVariable("codigo") Funcionario usuario, RedirectAttributes attributes)
+	public ModelAndView editar(@PathVariable("codigo") Proprietario proprietario, RedirectAttributes attributes)
 	{
-		attributes.addFlashAttribute("usuario", usuario);
-		return new ModelAndView("redirect:/funcionarios/novo");
+		attributes.addFlashAttribute("proprietario", proprietario);
+		return new ModelAndView("redirect:/proprietarios/novo");
 	}
 
 	@GetMapping("/remover/{codigo}")
 	public ModelAndView remover(@PathVariable("codigo") Long codigo)
 	{
-		funcionarioService.remover(codigo);
-		return new ModelAndView("redirect:/funcionarios");
+		proprietarioService.remover(codigo);
+		return new ModelAndView("redirect:/proprietarios");
 	}
 	@GetMapping("/pesquisarCa")
 	public ModelAndView getCA(String nomePesquisa)
 	{
-		ModelAndView mv=new ModelAndView("funcionarios/pesquisa");
-		mv.addObject("usuarios", funcionarioService.pesquisarNome(nomePesquisa));
+		ModelAndView mv=new ModelAndView("proprietarios/pesquisa");
+		mv.addObject("proprietarios", proprietarioService.pesquisarNome(nomePesquisa));
 		return mv;
 	}
 

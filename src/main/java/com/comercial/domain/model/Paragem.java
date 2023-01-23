@@ -22,7 +22,7 @@ public class Paragem
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private long codigo;
+	private Long codigo;
 	
 	
 	private String descricao;

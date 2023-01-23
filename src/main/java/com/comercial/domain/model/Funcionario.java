@@ -8,8 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-
+import javax.persistence.OneToOne;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,7 +23,7 @@ public class Funcionario
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private long codigo;
+	private Long codigo;
 	
 	private String nome;
 	
@@ -43,6 +42,10 @@ public class Funcionario
 	@ManyToOne
 	@JoinColumn(name = "codigo_trabalho")
 	private Trabalho trabalho;
+	
+	@OneToOne
+	@JoinColumn(name = "codigo_documento")
+	private Documento documento;
 	
 	
 }

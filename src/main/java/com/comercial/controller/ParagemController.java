@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Paragem;
 import com.comercial.domain.model.Veiculo;
-import com.comercial.domain.service.LicencaService;
 import com.comercial.domain.service.ParagemService;
 import com.comercial.domain.service.RotaService;
 
@@ -30,7 +29,7 @@ public class ParagemController
 	
 	
 	@GetMapping("/novo")
-	public ModelAndView novo()
+	public ModelAndView novo(Paragem paragem)
 	{
 		return new ModelAndView("paragens/cadastro").addObject("rotas", rotaService.listar());
 	}

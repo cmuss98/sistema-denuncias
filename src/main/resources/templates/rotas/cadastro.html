@@ -25,16 +25,23 @@
 							<input type="hidden" th:field="*{codigo}"/>
 							<div class="row">
 								<div class="col-sm-12 col-md-5">
-									<label for="cor" class="form-label">Origem</label>
-									<select class="form-control" id="cor" th:field="*{origem}">
+									<label for="descricao" class="form-label">Origem</label>
+									<select class="form-control" id="descricao" th:field="${rota.origemDestino}">
 										<option value="">Selecione a Origem</option>
+										<option th:each="ca: ${origens}"
+										th:value="${ca.codigo}"
+										th:text="${ca.descricao}">
+										</option>
 									</select>
 								</div>
 								<div class="col-sm-12 col-md-5">
-									<label for="cor" class="form-label">Destino</label>
-									<select class="form-control" id="cor" th:field="*{destino}">
+									<label for="descricao" class="form-label">Destino</label>
+									<select class="form-control" id="descricao" th:field="${rota.origemDestino}">
 										<option value="">Selecione o Destino</option>
-										
+										<option th:each="ca: ${origens}"
+										th:value="${ca.codigo}"
+										th:text="${ca.descricao}">
+										</option>
 									</select>
 								</div>
 								<div class="col-sm-12 col-md-5">
@@ -43,7 +50,7 @@
 								</div>
 								<div class="col-sm-12 col-md-5">
 									<label for="cor" class="form-label">Cor da Barra</label>
-									<select class="form-control" id="cor" th:field="${rota.coresBarra}">
+									<select class="form-control" id="cor" th:field="${rota.corBarra}">
 										<option value="">Selecione a Cor da Barra</option>
 										<option th:each="ca: ${coresBarra}"
 										th:value="${ca.codigo}"

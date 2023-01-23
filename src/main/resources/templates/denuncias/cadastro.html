@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}"
+	layout:decorate="~{layout/layout1}"
 	>
 	<head>
 		<title>Cadastro de Denuncias</title>
@@ -19,23 +19,25 @@
 				<div class="card">
 					<div class="card-body">
 						<form th:object="${denuncia}" method="post" th:action="@{/denuncias/novo}">
-							<input type="hidden" />
 							<div class="row">
 							<div class="col-sm-12 col-md-4">
-									<label for="capacidade">Descricao</label>
-									<input type="text" class="form-control" id="capacidade" th:field="*{descricao}"/>
+									<label for="descricao">Descricao</label>
+									<input type="text" class="form-control" id="descricao" th:field="*{descricao}"/>
 									<input type="hidden"  th:field="*{status}">
-									<input type="hidden" >
+									<input type="hidden" th:field="*{codigo}">
 								</div>
 							<div class="col-sm-12 col-md-2">
-									<label for="foto">Data</label>
-									<input type="date" class="form-control" id="foto" />
+									<label for="data">Data</label>
+									<input type="date" class="form-control" id="data" th:field="*{data}"/>
 								</div>
 								<div class="col-sm-12 col-md-2">
-									<label for="foto">Hora</label>
-									<input type="time" class="form-control" id="foto" />
+									<label for="hora">Hora</label>
+									<input type="time" class="form-control" id="hora"  th:field="*{hora}" />
 								</div>
-								
+								<div class="col-sm-12 col-md-2">
+									<label for="avaliacao">Avaliacao</label>
+									<input type="text" class="form-control" id="avaliacao"  th:field="*{denuncia.avaliacao?.descricao}" />
+								</div>
 							<div class="col-sm-12 col-md-4">
 									<label for="foto">Foto</label>
 									<input type="file" class="form-control" id="foto" th:field="*{foto}"/>
@@ -46,13 +48,13 @@
 										<option value="">Selecione a matricula </option>
 										<option th:each="vei: ${veiculos}"
 										th:value="${vei.codigo}"
-										th:text="${vei.matricula}+'-'+${vei.rota?.origem}+'-'+${vei.rota?.destino}">
+										th:text="${vei.matricula}+'-'+${vei.cor}">
 										</option>
 									</select>
 								</div>	
 								<div class="col-sm-12 col-md-4">
-									<label for="foto">Clique no botao para obter a tua localizacao</label>
-									<input type="submit" class="btn btn-success mt-1" value="localizacao">
+									<label for="localizacao">Clique no botao para obter a tua localizacao</label>
+									<input type="submit" class="btn btn-success mt-1" value="localizacao" th:field="*{localizacao}">
 								</div>
 							
 							</div>
