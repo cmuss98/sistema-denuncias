@@ -29,10 +29,6 @@ public class Contacto
 	private String descricao;
 	
 	@ManyToOne
-	@JoinColumn(name = "codigo_proprietario")
-	private Proprietario proprietario;
-	
-	@ManyToOne
 	@JoinColumn(name = "codigo_funcionario")
 	private Funcionario funcionario;
 }

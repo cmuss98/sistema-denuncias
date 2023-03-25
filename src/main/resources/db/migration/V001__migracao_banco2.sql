@@ -25,13 +25,6 @@ CREATE TABLE `rota_OrigemDestino` (
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `paragem` (
-  `codigo` bigint NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(30) NOT NULL,
-  `codigo_rota` bigint NOT NULL,
-  primary key(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `tipoDocumento` (
   `codigo` bigint NOT NULL AUTO_INCREMENT,
   `descricao` varchar(20) NOT NULL,
@@ -47,15 +40,6 @@ CREATE TABLE `Documento` (
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `veiculo` (
-  `codigo` bigint NOT NULL AUTO_INCREMENT,
-  `matricula` varchar(20) NOT NULL,
-  `cor` varchar(20) NOT NULL,
-  `codigo_rota` bigint NOT NULL,
-  `codigo_documento` bigint NOT NULL,
-  primary key(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `Morada` (
   `codigo` bigint NOT NULL AUTO_INCREMENT,
   `avenida` varchar(30) NOT NULL,
@@ -63,7 +47,6 @@ CREATE TABLE `Morada` (
   `bairro` varchar(30) NOT NULL,
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE `trabalho`(
   `codigo` bigint NOT NULL AUTO_INCREMENT,
@@ -77,32 +60,20 @@ CREATE TABLE `funcionario` (
   `nome` varchar(20) NOT NULL,
   `dataNascimento` date NOT NULL,
   `genero` varchar(10) NOT NULL,
-  `user` varchar(30) NOT NULL,
   `password` varchar(20) NOT NULL,
   `codigo_morada` bigint NOT NULL,
   `codigo_trabalho` bigint NOT NULL,
   `codigo_documento` bigint NOT NULL,
+  `codigo_rota` bigint NOT NULL,
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `proprietario` (
+CREATE TABLE `denunciante` (
   `codigo` bigint NOT NULL AUTO_INCREMENT,
-  `nome` varchar(20) NOT NULL,
-  `dataNascimento` date NOT NULL,
-  `genero` varchar(10) NOT NULL,
-  `codigo_veiculo` bigint NOT NULL,
-  `codigo_morada` bigint NOT NULL,
-  `codigo_documento` bigint NOT NULL,
+  `nome` varchar(20) DEFAULT NULL,
+  `contacto` varchar(20) DEFAULT NULL,
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `Avaliacao` (
-  `codigo` bigint NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(15) NOT NULL,
-  primary key(codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE `denuncia` (
   `codigo` bigint NOT NULL AUTO_INCREMENT,
@@ -112,8 +83,9 @@ CREATE TABLE `denuncia` (
   `data` date NOT NULL,
   `hora` time NOT NULL,
   `foto` longblob DEFAULT NULL,
-  `codigo_veiculo` bigint NOT NULL,
-  `codigo_avaliacao` bigint NOT NULL,
+  `matricula` varchar(10) NOT NULL,
+  `codigo_denunciante` bigint NOT NULL,
+  `codigo_rota` bigint NOT NULL,
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -121,7 +93,6 @@ CREATE TABLE `contacto` (
   `codigo` bigint NOT NULL AUTO_INCREMENT,
   `descricao` varchar(10) NOT NULL,
   `numero` varchar(20) NOT NULL,
-  `codigo_proprietario` bigint NOT NULL,
   `codigo_funcionario` bigint NOT NULL,
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -132,7 +103,9 @@ CREATE TABLE `Reclamacao` (
   `status` varchar(10)NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `codigo_veiculo` bigint NOT NULL,
+  `matricula` varchar(10) NOT NULL,
+  `codigo_denunciante` bigint NOT NULL,
+  `codigo_rota` bigint NOT NULL,
   primary key(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -147,24 +120,6 @@ ALTER TABLE `rota`
   ADD CONSTRAINT `fk_cor_codigo` FOREIGN KEY (`codigo_cor`) REFERENCES `corBarra` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
---
--- Limitadores para a tabela `paragem`
---
- 
-
-ALTER TABLE `paragem`
-  ADD CONSTRAINT `fk_rotap_codigo` FOREIGN KEY (`codigo_rota`) REFERENCES `rota` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `veiculo`
---
-
-
-ALTER TABLE `veiculo`
-  ADD CONSTRAINT `fk_rotav_codigo` FOREIGN KEY (`codigo_rota`) REFERENCES `rota` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `veiculo`
-  ADD CONSTRAINT `fk_documentov_codigo` FOREIGN KEY (`codigo_documento`) REFERENCES `documento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-  
 --
 -- Limitadores para a tabela `rota_origemDestino`
 --
@@ -181,9 +136,9 @@ ALTER TABLE `rota_origemDestino`
 --
  
 ALTER TABLE `denuncia` 
-  ADD CONSTRAINT `fk_veiculod_codigo` FOREIGN KEY (`codigo_veiculo`) REFERENCES `veiculo` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_denuncianted_codigo` FOREIGN KEY (`codigo_denunciante`) REFERENCES `denunciante` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `denuncia`
-  ADD CONSTRAINT `fk_avaliacao_codigo` FOREIGN KEY (`codigo_avaliacao`) REFERENCES `avaliacao` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_rotad_codigo` FOREIGN KEY (`codigo_rota`) REFERENCES `rota` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `funcionario`
@@ -196,18 +151,10 @@ ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_trabalho_codigo` FOREIGN KEY (`codigo_trabalho`) REFERENCES `trabalho` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `funcionario`
 	ADD CONSTRAINT `fk_documentof_codigo` FOREIGN KEY (`codigo_documento`) REFERENCES `documento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ALTER TABLE `funcionario`
+	ADD CONSTRAINT `fk_rotaf_codigo` FOREIGN KEY (`codigo_rota`) REFERENCES `rota` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
   
---
--- Limitadores para a tabela `proprietario` 
---
- 
-ALTER TABLE `proprietario` 
-  ADD CONSTRAINT `fk_veiculop_codigo` FOREIGN KEY (`codigo_veiculo`) REFERENCES `veiculo` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `proprietario`
-  ADD CONSTRAINT `fk_moradap_codigo` FOREIGN KEY (`codigo_morada`) REFERENCES `morada` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `proprietario`
-  ADD CONSTRAINT `fk_documentop_codigo` FOREIGN KEY (`codigo_documento`) REFERENCES `documento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-  
+
 --
 -- Limitadores para a tabela `documento`
 --
@@ -220,8 +167,6 @@ ALTER TABLE `documento`
 -- Limitadores para a tabela `contacto` 
 --
  
-ALTER TABLE `contacto` 
-  ADD CONSTRAINT `fk_proprietario_codigo` FOREIGN KEY (`codigo_proprietario`) REFERENCES `proprietario` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `contacto`
   ADD CONSTRAINT `fk_funcionario_codigo` FOREIGN KEY (`codigo_funcionario`) REFERENCES `funcionario` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -231,7 +176,9 @@ ALTER TABLE `contacto`
 --
  
 ALTER TABLE `reclamacao` 
-   ADD CONSTRAINT `fk_veiculor_codigo` FOREIGN KEY (`codigo_veiculo`) REFERENCES `veiculo` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+   ADD CONSTRAINT `fk_denuncianter_codigo` FOREIGN KEY (`codigo_denunciante`) REFERENCES `denunciante` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `reclamacao`
+  ADD CONSTRAINT `fk_rotar_codigo` FOREIGN KEY (`codigo_rota`) REFERENCES `rota` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 
@@ -240,5 +187,5 @@ insert into tipoDocumento(descricao) values ("BI") ,("Passaporte"), ("Licenca");
 insert into origemDestino(descricao) values ("A. Voador") ,("Xipamanine"), ("P. Combatentes"),("Malhazine"), ("Laulane")
 ,("Magoanine"), ("Museu");
 
-insert into avaliacao(descricao) values ("Veridica") ,("Nao veridica");
 insert into trabalho (descricao, dirrecao) values ("PM", "CPM") ,("Fiscal", "CMCM");
+

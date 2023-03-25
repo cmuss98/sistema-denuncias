@@ -25,7 +25,7 @@
 									<input type="hidden" th:field="*{codigo}"/>
 							<div class="row">
 								<div class="col-sm-12 col-md-4">
-									<label for="nome" class="form-label">Nome do propretario</label>
+									<label for="nome" class="form-label">Doc. do Propretario</label>
 									<input type="text" class="form-control" id="nome" th:field="${veiculo.proprietario?.nome}">
 								</div>
 								<div class="col-sm-12 col-md-2">
@@ -104,6 +104,24 @@
 										<option value="">Selecione a Rota</option>
 										
 									</select>
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<label for="tipoDocumento" class="form-label">Doc. do Autocarro</label>
+									<select class="form-control" id="tipoDocumento" >
+										<option value="">Selecione o tipo de documento</option>
+									</select>
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<label for="numero" class="form-label">Numero de documento</label>
+									<input type="text" class="form-control" id="numero" >
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<label for="dataEmissao" class="form-label">Data de Emissao</label>
+									<input type="date" class="form-control" id="dataEmissao" >
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<label for="dataValidade" class="form-label">Data de Validade</label>
+									<input type="date" class="form-control" id="dataValidade" >
 								</div>
 							</div>
 							

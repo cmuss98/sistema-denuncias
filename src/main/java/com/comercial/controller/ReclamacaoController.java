@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Reclamacao;
 import com.comercial.domain.service.ReclamacaoService;
-import com.comercial.domain.service.VeiculoService;
+import com.comercial.domain.service.RotaService;
 
 @Controller
 @RequestMapping("/reclamacoes")
@@ -20,7 +20,7 @@ public class ReclamacaoController
 {
 	
 	@Autowired
-	private VeiculoService veiculoService;
+	private RotaService rotaService;
 	
 	@Autowired
 	private ReclamacaoService reclamacaoService;
@@ -29,14 +29,14 @@ public class ReclamacaoController
 	@GetMapping("/novo")
 	public ModelAndView novo(Reclamacao reclamacao)
 	{
-		return new ModelAndView("reclamacoes/cadastro").addObject("veiculos",veiculoService.listar());
+		return new ModelAndView("reclamacoes/cadastro").addObject("rotas",rotaService.listar());
 	}
 	
 	@PostMapping("/novo")
 	public ModelAndView salvar(Reclamacao reclamacao, RedirectAttributes attributes)
 	{
 		reclamacaoService.salvar(reclamacao);
-		attributes.addFlashAttribute("mensagem", String.format("Reclamacao de veiculo %s cadastrado com sucesso", reclamacao.getVeiculo()));
+		attributes.addFlashAttribute("mensagem", String.format("Reclamacao de matricula %s cadastrado com sucesso", reclamacao.getMatricula()));
 		return new ModelAndView("redirect:/reclamacoes/novo");
 	}
 	

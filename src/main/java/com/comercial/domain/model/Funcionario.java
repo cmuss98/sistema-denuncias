@@ -31,8 +31,6 @@ public class Funcionario
 	
 	private String genero;
 	
-	private String user;
-	
 	private String password;
 	
 	@ManyToOne
@@ -46,6 +44,10 @@ public class Funcionario
 	@OneToOne
 	@JoinColumn(name = "codigo_documento")
 	private Documento documento;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_rota")
+	private Rota rota;
 	
 	
 }

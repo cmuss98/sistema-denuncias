@@ -11,8 +11,8 @@ import com.comercial.domain.model.Contacto;
 
 @Repository
 public interface ContactoRepository extends JpaRepository<Contacto, Long>{
-	@Query(value="Select * from contacto c join proprietario p join funcionario f"
-			+ "where c.codigo_proprietario=p.codigo and c.codigo_funcionario=f.codigo"
+	@Query(value="Select * from contacto c join funcionario f"
+			+ "where c.codigo_funcionario=f.codigo"
 			+ "and c.numero like %:numero%", nativeQuery=true)
 List<Contacto> findCaByName(@Param("numero")String numero);
 }

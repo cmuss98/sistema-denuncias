@@ -11,7 +11,7 @@ import com.comercial.domain.model.Reclamacao;
 
 @Repository
 public interface ReclamacaoRepository extends JpaRepository<Reclamacao, Long>{
-	@Query(value="Select * from reclamacao r join veiculo cb where" 
-			+ " r.codigo_veiculo=cb.codigo and  r.status like %:status%", nativeQuery=true)
+	@Query(value="Select * from reclamacao r join denunciante d join rota rt where" 
+			+ " r.codigo_denunciante=d.codigo and r.codigo_rota=rt.codigo and  r.status like %:status%", nativeQuery=true)
 List<Reclamacao> findCaByName(@Param("status")String status);
 }

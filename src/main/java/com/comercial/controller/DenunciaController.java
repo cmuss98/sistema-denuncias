@@ -11,9 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Denuncia;
-import com.comercial.domain.service.AvaliacaoService;
 import com.comercial.domain.service.DenunciaService;
-import com.comercial.domain.service.VeiculoService;
+import com.comercial.domain.service.DenuncianteService;
+import com.comercial.domain.service.RotaService;
 
 
 
@@ -24,16 +24,15 @@ public class DenunciaController
 	@Autowired
 	private DenunciaService denunciaService;
 	@Autowired
-	private VeiculoService veiculoService;
+	private DenuncianteService denuncianteService;
 	@Autowired
-	private AvaliacaoService avaliacaoService;
+	private RotaService rotaService;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Denuncia denuncia)
 	{
 		ModelAndView mv=new ModelAndView("denuncias/cadastro");
-		mv.addObject("veiculos",veiculoService.listar());
-		mv.addObject("avaliacoes", avaliacaoService.listar());
+		mv.addObject("rotas", rotaService.listar());
 		return mv;
 	}
 	
@@ -41,7 +40,7 @@ public class DenunciaController
 	public ModelAndView salvar(Denuncia denuncia, RedirectAttributes attributes)
 	{
 		denunciaService.salvar(denuncia);
-		attributes.addFlashAttribute("mensagem", String.format("Denuncia de veiculo %s cadastrado com sucesso", denuncia.getVeiculo()));
+		attributes.addFlashAttribute("mensagem", String.format("Denuncia de matricula %s cadastrado com sucesso", denuncia.getMatricula()));
 		return new ModelAndView("redirect:/denuncias/novo");
 	}
 	

@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.comercial.domain.model.Paragem;
+import com.comercial.domain.model.Denunciante;
 import com.comercial.domain.model.Rota;
 
 @Repository
-public interface ParagemRepository extends JpaRepository<Paragem, Long>{
-	@Query(value="Select * from Paragem p join rota r where" 
-			+ " p.codigo_rota=r.codigo and  p.descricao like %:descricao%", nativeQuery=true)
-List<Paragem> findCaByName(@Param("descricao")String descricao);
+public interface DenuncianteRepository extends JpaRepository<Denunciante, Long>{
+	@Query(value="Select * from denunciante d where" 
+			+ "   d.nome like %:nome%", nativeQuery=true)
+List<Denunciante> findCaByName(@Param("nome")String nome);
 }

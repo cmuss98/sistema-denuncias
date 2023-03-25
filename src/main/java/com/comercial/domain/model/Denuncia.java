@@ -38,12 +38,13 @@ public class Denuncia
 	
 	private File foto;
 	
+	private String matricula;
 	
 	@ManyToOne
-	@JoinColumn(name = "codigo_veiculo")
-	private Veiculo veiculo;
+	@JoinColumn(name = "codigo_denunciante")
+	private Denunciante denunciante;
 	
 	@ManyToOne
-	@JoinColumn(name = "codigo_avaliacao")
-	private Avaliacao avaliacao;
+	@JoinColumn(name = "codigo_rota")
+	private Rota rota;
 }

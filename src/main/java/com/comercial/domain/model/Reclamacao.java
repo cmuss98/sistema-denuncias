@@ -35,8 +35,13 @@ public class Reclamacao
 	
 	private Time hora;
 	
+	private String matricula;
 	
 	@ManyToOne
-	@JoinColumn(name = "codigo_veiculo")
-	private Veiculo veiculo;
+	@JoinColumn(name = "codigo_denunciante")
+	private Denunciante denunciante;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_rota")
+	private Rota rota;
 }

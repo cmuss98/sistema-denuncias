@@ -27,7 +27,6 @@ public class Rota
 	
 	private String via;
 	
-	
 	@ManyToOne
 	@JoinColumn(name = "codigo_cor")
 	private CorBarra corBarra;
