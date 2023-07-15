@@ -1,4 +1,4 @@
-package com.comercial.controller;
+ package com.comercial.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,19 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Rota;
-import com.comercial.domain.service.RotaService;
 import com.comercial.domain.service.CorBarraService;
 import com.comercial.domain.service.OrigemDestinoService;
+import com.comercial.domain.service.RotaService;
 
 
 @Controller
 @RequestMapping("/rotas")
 public class RotaController {
+
 	@Autowired
 	private RotaService rotaService;
 	
 	@Autowired
-	private CorBarraService coresBarraService;
+	private CorBarraService corbarraService;
 	
 	@Autowired
 	private OrigemDestinoService origemDestinoService;
@@ -30,7 +31,7 @@ public class RotaController {
 	public ModelAndView novo(Rota rota)
 	{
 		ModelAndView mv=new ModelAndView("rotas/cadastro");
-		mv.addObject("coresBarra",coresBarraService.listar());
+		mv.addObject("corresbarra", corbarraService.listar());
 		mv.addObject("origens", origemDestinoService.listar());
 		return mv;
 	}

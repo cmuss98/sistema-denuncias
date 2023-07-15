@@ -11,6 +11,7 @@ import com.comercial.domain.model.Trabalho;
 
 @Repository
 public interface TrabalhoRepository extends JpaRepository<Trabalho, Long>{
-	@Query(value="Select * from Trabalho r where r.dirrecao like %:dirrecao%", nativeQuery=true)
-List<Trabalho> findCaByName(@Param("dirrecao")String dirrecao);
+	@Query(value="Select * from Trabalho t join dirrecao r where t.codigo_dirrecao=r.codigo"
+			+ " and t.descricao like %:descricao%", nativeQuery=true)
+List<Trabalho> findCaByName(@Param("descricao")String dirrecao);
 }

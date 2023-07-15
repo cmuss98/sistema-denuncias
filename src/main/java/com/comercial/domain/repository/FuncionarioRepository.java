@@ -12,8 +12,8 @@ import com.comercial.domain.model.Funcionario;
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>
 {
-	@Query(value="Select * from funcionario u join morada m join trabalho t join documento d join rota r "
-			+ " where u.codigo_morada=m.codigo and u.codigo_trabalho=t.codigo and"
+	@Query(value="Select * from funcionario u join usuario m join trabalho t join documento d join rota r "
+			+ " where u.codigo_usuario=m.codigo and u.codigo_trabalho=t.codigo and"
 			+ " u.codigo_documento=d.codigo and u.codigo_rota=r.codigo and u.nome like %:nome%", nativeQuery=true)
 	List<Funcionario> findCaByName(@Param("nome")String nome);
 

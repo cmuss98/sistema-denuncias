@@ -4,14 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout2}">
 	<head>
-		<title>Denuncias</title>
+		<title>Denúncias</title>
 	</head>
 	<body>
 		<section layout:fragment="conteudo">
 			<div class="container">
 				<div class="row mt-4">
 					<div class="col-sm-12 col-md-9">
-						<h4>Pesquisa de Denuncias</h4>
+						<h4>Pesquisa de Ocorrências</h4>
 					</div>
 					<div class="col-sm-12 col-md-3" style="text-align:right;">
 						<a th:href="@{/denuncias/novo}" type="button" class="btn btn-success">Denunciar <i class="fa fa-plus"></i></a>
@@ -19,32 +19,35 @@
 				</div>
 				<form th:action="@{/denuncias/pesquisarCa}" method="get">
 					<label>Pesquisar por status</label>
-					<input type="text" name="nomePesquisa">
-					<input type="submit" class="btn btn-success mt-1" value="pesquisar">
+					<select id="nomePesquisa">
+						<option value="">Selecione</option>
+						<option value="${denuncia.status}">
+						</option>
+					</select>
 				</form>
 				<hr>
 				<table class="table table-stripped table-bordered">
 					<tr>
-						<th class="col-1">Codigo</th>
-						<th class="col-3">Descricao</th>
-						<th class="col-2">Status</th>
+						<th class="col-1">Código</th>
+						<th class="col-2">Tipo</th>
+						<th class="col-3">Descrição</th>
+						<th class="col-1">Status</th>
 						<th class="col-2">Foto</th>
-						<th class="col-2">Localizacao</th>
+						<th class="col-2">Localização</th>
 						<th class="col-2">Data</th>
 						<th class="col-2">Hora</th>
-						<th class="col-2">Avaliacao</th>
-						<th class="col-2">Veiculo</th>
+						<th class="col-2">Matricula</th>
 						<th class="col-1 text-center"><i class="fa fa-cogs"></i></th>
 					</tr>
 					<tr th:each="denuncia: ${denuncias}">
 						<td th:text="${denuncia.codigo}"></td>
 						<td th:text="${denuncia.descricao}"></td>
+						<td th:text="${denuncia.descricao}"></td>
 						<td th:text="${denuncia.status}"></td>
 						<td th:text="${denuncia.foto}"></td>
 						<td th:text="${denuncia.localizacao}"></td>
 						<td th:text="${denuncia.data}"></td>
-						<td th:text="${denuncia.avaliacao}"></td>
-						<td th:text="${denuncia.veiculo?.matricula}+'-'+${denuncia.veiculo?.matricula}"></td>
+						<td th:text="${denuncia.matricula}"></td>
 						<td class="text-center">
 							<a th:href="@{/denuncias/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar"><i class="fa fa-edit"></i></a> 
 							<a th:href="@{/denuncias/remover/{codigo}(codigo = ${denuncia.codigo})}" data-bs-toggle="tooltip" data-bs-placement="right" title="Remover"><i class="fa fa-trash text-danger"></i></a> 

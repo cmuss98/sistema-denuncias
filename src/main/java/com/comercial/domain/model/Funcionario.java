@@ -23,7 +23,7 @@ public class Funcionario
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private Long codigo;
+	private long codigo;
 	
 	private String nome;
 	
@@ -31,11 +31,18 @@ public class Funcionario
 	
 	private String genero;
 	
-	private String password;
+	private String avenida;
 	
-	@ManyToOne
-	@JoinColumn(name = "codigo_morada")
-	private Morada morada;
+	private String casa;
+	
+	private String bairro;
+	
+	private String contacto;
+	
+	
+	@OneToOne
+	@JoinColumn(name = "codigo_usuario")
+	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_trabalho")

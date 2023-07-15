@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.comercial.domain.model.Denuncia;
-import com.comercial.domain.service.DenunciaService;
-import com.comercial.domain.service.DenuncianteService;
+import com.comercial.domain.model.Ocorrencia;
+import com.comercial.domain.service.OcorrenciaService;
 import com.comercial.domain.service.RotaService;
 
 
@@ -22,14 +21,12 @@ import com.comercial.domain.service.RotaService;
 public class DenunciaController 
 {
 	@Autowired
-	private DenunciaService denunciaService;
-	@Autowired
-	private DenuncianteService denuncianteService;
+	private OcorrenciaService denunciaService;
 	@Autowired
 	private RotaService rotaService;
 	
 	@GetMapping("/novo")
-	public ModelAndView novo(Denuncia denuncia)
+	public ModelAndView novo(Ocorrencia denuncia)
 	{
 		ModelAndView mv=new ModelAndView("denuncias/cadastro");
 		mv.addObject("rotas", rotaService.listar());
@@ -37,7 +34,7 @@ public class DenunciaController
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvar(Denuncia denuncia, RedirectAttributes attributes)
+	public ModelAndView salvar(Ocorrencia denuncia, RedirectAttributes attributes)
 	{
 		denunciaService.salvar(denuncia);
 		attributes.addFlashAttribute("mensagem", String.format("Denuncia de matricula %s cadastrado com sucesso", denuncia.getMatricula()));
@@ -51,7 +48,7 @@ public class DenunciaController
 	}
 	
 	@GetMapping("/{codigo}")
-	public ModelAndView editar(@PathVariable("codigo") Denuncia denuncia)
+	public ModelAndView editar(@PathVariable("codigo") Ocorrencia denuncia)
 	{
 		denuncia.setStatus("Finalizada");
 		return new ModelAndView("redirect:/denuncias");

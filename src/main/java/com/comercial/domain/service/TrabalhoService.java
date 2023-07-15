@@ -39,8 +39,8 @@ public class TrabalhoService
 	{
 		trabalhoRepository.deleteById(codigo);
 	}
-	public List<Trabalho> pesquisarNome(String dirrecao)
+	public List<Trabalho> pesquisarNome(String descricao)
 	{
-		return trabalhoRepository.findCaByName(dirrecao);
+		return trabalhoRepository.findCaByName(descricao);
 	}
 }

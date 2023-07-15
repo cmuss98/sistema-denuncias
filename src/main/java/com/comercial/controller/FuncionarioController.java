@@ -10,12 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comercial.domain.model.Funcionario;
-import com.comercial.domain.service.ContactoService;
 import com.comercial.domain.service.DocumentoService;
 import com.comercial.domain.service.FuncionarioService;
-import com.comercial.domain.service.MoradaService;
-import com.comercial.domain.service.TipoDocumentoService;
 import com.comercial.domain.service.TrabalhoService;
+import com.comercial.domain.service.UsuarioService;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -25,7 +23,7 @@ public class FuncionarioController
 	private FuncionarioService funcionarioService;
 	
 	@Autowired
-	private MoradaService moradaService;
+	private UsuarioService usuarioService;
 	
 	@Autowired
 	private TrabalhoService trabalhoService;
@@ -33,22 +31,15 @@ public class FuncionarioController
 	@Autowired
 	private DocumentoService documentoService;
 	
-	@Autowired
-	private TipoDocumentoService tipoDocumentoService;
-	
-	@Autowired
-	private ContactoService contactoService;
 	
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Funcionario usuario)
 	{
 		ModelAndView mv=new ModelAndView("funcionarios/cadastro");
-		mv.addObject("moradas", moradaService.listar());
+		mv.addObject("moradas", usuarioService.listar());
 		mv.addObject("trabalhos", trabalhoService.listar());
 		mv.addObject("documentos", documentoService.listar());
-		mv.addObject("contactos", contactoService.listar());
-		mv.addObject("tipoDocumentos", tipoDocumentoService.listar());
 		return mv;
 	}
 	

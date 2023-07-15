@@ -1,7 +1,5 @@
 package com.comercial.domain.model;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,17 +13,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Morada 
+public class Usuario 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long codigo;
 	
-	private String avenida;
+	private String user;
 	
-	private int casa;
-	
-	private String bairro;
+	private String password;
 	
 }

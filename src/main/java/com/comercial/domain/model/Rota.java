@@ -23,9 +23,10 @@ public class Rota
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
-	private Long codigo;
+	private long codigo;
 	
 	private String via;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_cor")

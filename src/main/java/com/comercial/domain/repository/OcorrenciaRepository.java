@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.comercial.domain.model.Denuncia;
+import com.comercial.domain.model.Ocorrencia;
 
 @Repository
-public interface DenunciaRepository extends JpaRepository<Denuncia, Long>{
-	@Query(value="Select * from denuncia d join denunciante de  join rota r where"
-			+ " d.codigo_denunciante=de.codigo and d.codigo_rota=r.codigo"
+public interface OcorrenciaRepository extends JpaRepository<Ocorrencia, Long>{
+	@Query(value="Select * from ocorrencia d join rota r where"
+			+ " d.codigo_rota=r.codigo and"
 			+ "d.status like %:status%", nativeQuery=true)
-	List<Denuncia> findCaByName(@Param("status")String status);
+	List<Ocorrencia> findCaByName(@Param("status")String status);
 }

@@ -4,7 +4,7 @@
 	layout:decorate="~{layout/layout1}"
 	>
 	<head>
-		<title>Cadastro de Denuncias</title>
+		<title>Cadastro de Ocorrências</title>
 	</head>
 	<body>
 		<section layout:fragment="conteudo">
@@ -12,19 +12,37 @@
 				<div th:replace="fragments/mensagemSucesso.html :: alert"></div>
 				<div class="row">
 					<div class="col-12 col-sm-9">
-						<h4>Cadastro de Denuncias</h4>
+						<h4>Cadastro de Ocorrências</h4>
 					</div>
 				</div>
 				<hr>
 				<div class="card">
 					<div class="card-body">
-						<form th:object="${denuncia}" method="post" th:action="@{/denuncias/novo}">
+						<form th:object="${ocorrencia}" method="post" th:action="@{/denuncias/novo}">
 							<div class="row">
-							<div class="col-sm-12 col-md-4">
-									<label for="descricao">Descricao</label>
-									<input type="text" class="form-control" id="descricao" th:field="*{descricao}"/>
-									<input type="hidden"  th:field="*{status}">
+								<div class="col-sm-12 col-md-3">
 									<input type="hidden" th:field="*{codigo}">
+									<input type="hidden" th:field="*{status}">
+									<label for="tipo" class="form-label">Tipo de Ocorrência</label>
+									<select class="form-control" id="tipo" th:field="${ocorrencia.tipo}">
+										<option value="">Selecione o tipo</option>
+										<option value="denuncia">Denuncia</option>
+										<option value="reclamacao">Reclamacao</option>
+									</select>
+								</div>
+							<div class="col-sm-12 col-md-5">
+									<label for="rota" class="form-label">Rota</label>
+									<select class="form-control" id="rota" th:field="${ocorrencia.rota}">
+										<option value="">Selecione a rota</option>
+										<option th:each="ca: ${rotas}"
+										th:value="${ca.codigo}"
+										th:text="${ca.origem}+' - '+${ca.destino}">
+										</option>
+									</select>
+								</div>
+							<div class="col-sm-12 col-md-4">
+									<label for="descricao">Descrição</label>
+									<input type="text" class="form-control" id="descricao" th:field="*{descricao}"/>
 								</div>
 							<div class="col-sm-12 col-md-2">
 									<label for="data">Data</label>
@@ -34,29 +52,18 @@
 									<label for="hora">Hora</label>
 									<input type="time" class="form-control" id="hora"  th:field="*{hora}" />
 								</div>
-								<div class="col-sm-12 col-md-2">
-									<label for="avaliacao">Avaliacao</label>
-									<input type="text" class="form-control" id="avaliacao"  th:field="*{denuncia.avaliacao?.descricao}" />
-								</div>
-							<div class="col-sm-12 col-md-4">
+								<div class="col-sm-12 col-md-4">
 									<label for="foto">Foto</label>
 									<input type="file" class="form-control" id="foto" th:field="*{foto}"/>
 								</div>
 								<div class="col-sm-12 col-md-4">
-									<label for="veiculo" class="form-label">Veiculo</label>
-									<select class="form-control" id="veiculo" th:field="${denuncia.veiculo}">
-										<option value="">Selecione a matricula </option>
-										<option th:each="vei: ${veiculos}"
-										th:value="${vei.codigo}"
-										th:text="${vei.matricula}+'-'+${vei.cor}">
-										</option>
-									</select>
+									<label for="matricula" class="form-label">Matrícula</label>
+									<input type="text" class="form-control" value="matricula" th:field="*{matricula}">
 								</div>	
 								<div class="col-sm-12 col-md-4">
-									<label for="localizacao">Clique no botao para obter a tua localizacao</label>
+									<label for="localizacao">Clique no botão para obter a tua localização</label>
 									<input type="submit" class="btn btn-success mt-1" value="localizacao" th:field="*{localizacao}">
 								</div>
-							
 							</div>
 							<button type="submit" class="btn btn-primary mt-4">Guardar</button>
 						</form>

@@ -7,11 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.comercial.domain.model.Rota;
+import com.comercial.domain.model.Dirrecao;
 
 @Repository
-public interface RotaRepository extends JpaRepository<Rota, Long>{
-	@Query(value="Select * from rota r join corBarra cb where" 
-					+ " r.codigo_cor=cb.codigo and  r.via like %:via%", nativeQuery=true)
-	List<Rota> findCaByName(@Param("via")String via);
+public interface DirrecaoRepository extends JpaRepository<Dirrecao, Long>{
+	@Query(value="Select * from  dirrecao r where t.descricao like %:descricao%", nativeQuery=true)
+List<Dirrecao> findCaByName(@Param("descricao")String dirrecao);
 }

@@ -2,14 +2,18 @@ package com.comercial.domain.model;
 
 import java.io.File;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,12 +23,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Denuncia 
+public class Ocorrencia 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long codigo;
+	
+	private String tipo;
 	
 	private String descricao;
 	
@@ -32,17 +38,15 @@ public class Denuncia
 	
 	private String localizacao;
 	
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
 	private Date data;
 	
-	private Time hora;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.TIME)
+	private LocalDateTime hora;
 	
 	private File foto;
 	
 	private String matricula;
-	
-	@ManyToOne
-	@JoinColumn(name = "codigo_denunciante")
-	private Denunciante denunciante;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_rota")
